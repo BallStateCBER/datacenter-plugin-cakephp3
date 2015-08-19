@@ -1,6 +1,6 @@
 {
-    "name": "ballstatecber/DataCenter",
-    "description": "DataCenter plugin for CakePHP",
+    "name": "ballstatecber/datacenter-plugin-cakephp3",
+    "description": "Ball State CBER DataCenter plugin for CakePHP 3",
     "type": "cakephp-plugin",
     "require": {
         "php": ">=5.4.16",
