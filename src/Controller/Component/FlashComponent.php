@@ -7,7 +7,7 @@ class FlashComponent extends Component
 {
 	public $messages;
     
-    public function beforeRender(Event $event)
+    public function beforeRender(\Cake\Event\Event $event)
 	{
 		$this->prepareFlashMessages($event);
 	}
