@@ -1,5 +1,6 @@
 <?php
-	$on_localhost = stripos($_SERVER['HTTP_HOST'], 'localhost') !== false;
+    use Cake\Core\Configure;
+    $on_localhost = stripos($_SERVER['HTTP_HOST'], 'localhost') !== false;
 	$domain = $on_localhost ? '' : 'http://cberdata.org';
     $plugin_path = '/data_center';
 ?>
@@ -15,7 +16,7 @@
 		<link rel="dns-prefetch" href="//ajax.googleapis.com" />
 		<title>
 			<?php
-				$title = Configure::read('data_center_subsite_title');
+                $title = Configure::read('data_center_subsite_title');
 				if (isset($titleForLayout) && $titleForLayout) {
 					$title = $titleForLayout.' - '.$title;
 				}
