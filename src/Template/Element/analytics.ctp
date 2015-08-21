@@ -1,4 +1,6 @@
 <?php
+use Cake\Core\Configure;
+
 // Only invoke Google Analytics if an ID is found and the page is not being served from the development server
 $google_analytics_id = Configure::read('google_analytics_id');
 $not_localhost = isset($_SERVER['SERVER_NAME']) && stripos($_SERVER['SERVER_NAME'], 'localhost') === false;
