@@ -45,16 +45,8 @@
 		*/ ?>
 		<link rel="shortcut icon" href="<?= $domain.$plugin_path ?>/img/favicon.ico" />
 		<link href='http://fonts.googleapis.com/css?family=Asap:400,400italic,700' rel='stylesheet' type='text/css'>
-		<?php if (Configure::read('debug') == 0): ?>
-			<?= $this->Html->css($domain.$plugin_path.'/css/datacenter.css') ?>
-			<?= $this->Html->css('style') ?>
-		<?php else: ?>
-			<link rel="stylesheet/less" type="text/css" href="<?= $plugin_path ?>/css/datacenter.less" />
-			<link rel="stylesheet/less" type="text/css" href="/css/style.less" />
-			<script type="text/javascript">less = { env: 'development' };</script>
-			<?= $this->Html->script($domain.$plugin_path.'/js/less-1.7.0.min.js') ?>
-		<?php endif; ?>
-
+		<?= // $this->Html->css($domain.$plugin_path.'/css/datacenter.css') ?>
+		<?= $this->Html->css('style') ?>
 		<?= $this->fetch('css') ?>
 		<?= $this->fetch('scriptTop') ?>
 
