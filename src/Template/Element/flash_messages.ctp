@@ -1,11 +1,11 @@
-<?php 
-	/* This creates the hidden #flash_messages container and fills it with 
+<?php
+	/* This creates the hidden #flash_messages container and fills it with
 	 * flash messages and displayed via a javascript animation if there are
 	 * messages to display. Regardless, the container is put onto the page
 	 * so that asyncronous activity can load messages into it as needed. */
 	if (! empty($flashMessages)) {
 	    $this->append('buffered');
-		echo 'showFlashMessages();';
+		echo 'flashMessage.init();';
 		$this->end();
 	}
 ?>
@@ -16,7 +16,7 @@
 			<?php $this->append('buffered'); ?>
 				$('#close_flash_msg').click(function(event) {
 					event.preventDefault();
-					hideFlashMessages();
+					flashMessage.hide();
 				});
 			<?php $this->end(); ?>
 			<div class="messages_wrapper">

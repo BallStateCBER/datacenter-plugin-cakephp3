@@ -8,34 +8,35 @@
   };
 })(jQuery);
 
+var flashMessage = {
+    init: function () {
+    	var messages = $('#flash_messages');
+    	if (! messages.is(':visible')) {
+    		messages.fadeIn(500);
+    	}
+    },
 
-function showFlashMessages() {
-	var messages = $('#flash_messages');
-	if (! messages.is(':visible')) {
-		messages.fadeIn(500);
-	}
-}
+    hide: function () {
+    	var messages = $('#flash_messages');
+    	if (messages.is(':visible')) {
+    		messages.fadeOut(500, function() {
+    			$('#flash_messages ul').empty();
+    		});
+    	}
+    },
 
-function hideFlashMessages() {
-	var messages = $('#flash_messages');
-	if (messages.is(':visible')) {
-		messages.fadeOut(500, function() {
-			$('#flash_messages ul').empty();
-		});
-	}
-}
-
-function insertFlashMessage(message, classname) {
-	var msgLi = $(document.createElement('li'))
-		.addClass(classname)
-		.append('<p>'+message+'</p>')
-		.hide()
-		.fadeIn(500);
-	$('#flash_messages ul').append(msgLi);
-	if (! $('#flash_messages').is(':visible')) {
-		showFlashMessages();
-	}
-}
+    insert: function (message, classname) {
+    	var msgLi = $(document.createElement('li'))
+    		.addClass(classname)
+    		.append('<p>'+message+'</p>')
+    		.hide()
+    		.fadeIn(500);
+    	$('#flash_messages ul').append(msgLi);
+    	if (! $('#flash_messages').is(':visible')) {
+    		flashMessage.init();
+    	}
+    }
+};
 
 function selectTag(tagId, hasChildren) {
 	var availTagLi = $('#tag_' + tagId + '_li');

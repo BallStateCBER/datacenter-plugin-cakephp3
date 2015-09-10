@@ -5,7 +5,7 @@
             $message = str_replace("\n", "\\n", $message);
         ?>
 		<?php $this->append('buffered'); ?>
-            insertFlashMessage("<?= $message ?>", "<?= $msg['class'] ?>");
+            flashMessage.insert("<?= $message ?>", "<?= $msg['class'] ?>");
 		<?php $this->end(); ?>
 	<?php endforeach; ?>
 <?php endif; ?>
@@ -24,7 +24,7 @@
 		});
     <?php $this->end(); ?>
 <?php endif; ?>
-	
+
 <?= $this->fetch('content') ?>
 
 <script>
