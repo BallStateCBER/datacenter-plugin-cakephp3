@@ -105,7 +105,8 @@ a {
     font-weight: inherit;
     text-decoration: none;
 
-    &:visited {
+    &:visited:not(.btn),
+    &:active:not(.btn) {
         color: #008CA8;
     }
     &:hover {
@@ -114,9 +115,6 @@ a {
         span {
             text-decoration: underline;
         }
-    }
-    &:active {
-        color: #008CA8;
     }
     &.with_icon {
         text-decoration: none;
