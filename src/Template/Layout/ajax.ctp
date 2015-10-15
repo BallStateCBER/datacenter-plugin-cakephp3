@@ -1,3 +1,6 @@
+<?php
+    use Cake\Core\Configure;
+?>
 <?php if (! empty($flashMessages)): ?>
 	<?php foreach ($flashMessages as $msg): ?>
 		<?php
