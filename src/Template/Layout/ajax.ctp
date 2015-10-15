@@ -1,5 +1,5 @@
-<?php if (! empty($flash_messages)): ?>
-	<?php foreach ($flash_messages as $msg): ?>
+<?php if (! empty($flashMessages)): ?>
+	<?php foreach ($flashMessages as $msg): ?>
 		<?php
             $message = str_replace('"', '\"', $msg['message']);
             $message = str_replace("\n", "\\n", $message);
@@ -12,11 +12,11 @@
 
 <?php
 	// Only invoke Google Analytics if an ID is found and the page is not being served from the development server
-	$google_analytics_id = Configure::read('google_analytics_id');
-	$not_localhost = isset($_SERVER['SERVER_NAME']) && stripos($_SERVER['SERVER_NAME'], 'localhost') === false;
+	$googleAnalyticsId = Configure::read('google_analytics_id');
+	$notLocalhost = isset($_SERVER['SERVER_NAME']) && stripos($_SERVER['SERVER_NAME'], 'localhost') === false;
 ?>
 
-<?php if ($google_analytics_id && $not_localhost): ?>
+<?php if ($googleAnalyticsId && $notLocalhost): ?>
 	<?php $this->append('buffered'); ?>
 		ga('send', 'pageview', {
 			'page': '<?= $this->request->here ?>',
