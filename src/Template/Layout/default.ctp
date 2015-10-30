@@ -244,6 +244,7 @@
 		<?= $this->Html->script($domain.$plugin_path.'/js/datacenter.js') ?>
 		<?= $this->element('DataCenter.analytics') ?>
 		<?= $this->fetch('scriptBottom') ?>
+		<?= $this->fetch('script') ?>
         <script>
             $(document).ready(function () {
                 <?= $this->fetch('buffered') ?>
