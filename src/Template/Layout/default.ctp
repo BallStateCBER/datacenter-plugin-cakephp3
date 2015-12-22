@@ -1,8 +1,8 @@
 <?php
     use Cake\Core\Configure;
-    $on_localhost = stripos($_SERVER['HTTP_HOST'], 'localhost') !== false;
-	$domain = $on_localhost ? '' : 'http://cberdata.org';
-    $plugin_path = '/data_center';
+    use Cake\Routing\Router;
+    $domain = Router::url('/', true);
+    $plugin_path = 'data_center';
 ?>
 <!DOCTYPE html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
