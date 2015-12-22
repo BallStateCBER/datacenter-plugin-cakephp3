@@ -1,6 +1,6 @@
 <?php
     use Cake\Core\Configure;
-    $plugin_path = '/data_center';
+    $pluginPath = '/data_center';
 ?>
 <!DOCTYPE html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
@@ -41,7 +41,7 @@
 			More useful tag suggestions at http://html5boilerplate.com/docs/head-Tips/
 			Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons
 		*/ ?>
-		<link rel="shortcut icon" href="<?= $domain.$plugin_path ?>/img/favicon.ico" />
+		<link rel="shortcut icon" href="<?= $pluginPath ?>/img/favicon.ico" />
 		<link href='http://fonts.googleapis.com/css?family=Asap:400,400italic,700' rel='stylesheet' type='text/css'>
 		<?= $this->Html->css('style') ?>
 		<?= $this->fetch('css') ?>
@@ -172,7 +172,7 @@
 			<div class="max_width">
 				<div id="cberlogo_copyright">
 					<a href="http://www.bsu.edu/cber">
-						<img src="<?= $domain.$plugin_path ?>/img/BallStateCBER-red.png" />
+						<img src="<?= $pluginPath ?>/img/BallStateCBER-red.png" />
 					</a>
 					<p>
 						&copy; Center for Business and Economic Research, Ball State University
@@ -237,9 +237,9 @@
 
 		<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
 		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-		<script>window.jQuery || document.write('<script src="<?= $domain.$plugin_path ?>/js/jquery-1.9.1.min.js"><\/script>')</script>
+		<script>window.jQuery || document.write('<script src="<?= $pluginPath ?>/js/jquery-1.9.1.min.js"><\/script>')</script>
 
-		<?= $this->Html->script($domain.$plugin_path.'/js/datacenter.js') ?>
+		<?= $this->Html->script($pluginPath.'/js/datacenter.js') ?>
 		<?= $this->element('DataCenter.analytics') ?>
 		<?= $this->fetch('scriptBottom') ?>
 		<?= $this->fetch('script') ?>
