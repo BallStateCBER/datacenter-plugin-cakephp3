@@ -1,8 +1,6 @@
 <?php
     use Cake\Core\Configure;
-    use Cake\Routing\Router;
-    $domain = Router::url('/', true);
-    $plugin_path = 'data_center';
+    $plugin_path = '/data_center';
 ?>
 <!DOCTYPE html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
