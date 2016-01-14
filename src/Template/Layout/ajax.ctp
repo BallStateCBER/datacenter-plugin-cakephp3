@@ -13,13 +13,7 @@
 	<?php endforeach; ?>
 <?php endif; ?>
 
-<?php
-	// Only invoke Google Analytics if an ID is found and the page is not being served from the development server
-	$googleAnalyticsId = Configure::read('google_analytics_id');
-	$notLocalhost = isset($_SERVER['SERVER_NAME']) && stripos($_SERVER['SERVER_NAME'], 'localhost') === false;
-?>
-
-<?php if ($googleAnalyticsId && $notLocalhost): ?>
+<?php if (Configure::read('google_analytics_id')): ?>
 	<?php $this->append('buffered'); ?>
 		ga('send', 'pageview', {
 			'page': '<?= $this->request->here ?>',
