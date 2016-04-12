@@ -16,6 +16,12 @@ use DataCenter\Controller\AppController;
  */
 class PagesController extends AppController
 {
+    public function initialize()
+    {
+        parent::initialize();
+        $this->Auth->allow();
+    }
+
     public function phpinfo()
     {
         $this->viewBuilder()->layout('ajax');
