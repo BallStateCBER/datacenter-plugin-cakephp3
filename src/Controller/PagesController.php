@@ -1,10 +1,11 @@
 <?php
 namespace DataCenter\Controller;
 
-use DataCenter\Controller\AppController;
+use Cake\Cache\Cache;
 use Cake\Core\Configure;
 use Cake\Network\Exception\NotFoundException;
 use Cake\View\Exception\MissingTemplateException;
+use DataCenter\Controller\AppController;
 
 /**
  * Static content controller
@@ -17,12 +18,12 @@ class PagesController extends AppController
 {
     public function phpinfo()
     {
-        $this->layout = 'ajax';
+        $this->viewBuilder()->layout('ajax');
     }
 
     public function clearCache()
     {
         $this->set(['result' => Cache::clear()]);
-        $this->layout = 'simple';
+        $this->viewBuilder()->layout('simple');
     }
 }

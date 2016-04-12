@@ -1,1 +1,2 @@
-<?= $result ? 1 : 0
+<?php
+    echo $result ? 1 : 0;
