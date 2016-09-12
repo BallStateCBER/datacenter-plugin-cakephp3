@@ -1,49 +1,28 @@
 <?php
     use Cake\Core\Configure;
+    $tabs = [
+        ['Projects and<br />Publications', 'http://projects.cberdata.org'],
+        ['Economic<br />Indicators', 'http://indicators.cberdata.org'],
+        ['Weekly<br />Commentary', 'http://commentaries.cberdata.org'],
+        ['Community Readiness<br />Initiative', 'http://cri.cberdata.org'],
+        ['County<br />Profiles', 'http://profiles.cberdata.org'],
+        ['Community<br />Asset Inventory', 'http://asset.cberdata.org'],
+        ['Brownfield Grant<br />Writers\' Toolbox', 'http://brownfield.cberdata.org'],
+        ['Conexus Indiana<br />Report Card', 'http://conexus.cberdata.org']
+    ];
+    $this_subsite_url = Configure::read('data_center_subsite_url');
 ?>
 
 <nav>
-    <?php
-        $tabs = [];
-        $tabs[] = [
-            'Projects and<br />Publications',
-            'http://projects.cberdata.org'
-        ];
-        $tabs[] = [
-            'Economic<br />Indicators',
-            'http://indicators.cberdata.org'
-        ];
-        $tabs[] = [
-            'Weekly<br />Commentary',
-            'http://commentaries.cberdata.org'
-        ];
-        $tabs[] = [
-            'Community Readiness<br />Initiative',
-            'http://cri.cberdata.org'
-        ];
-        $tabs[] = [
-            'County<br />Profiles',
-            'http://profiles.cberdata.org'
-        ];
-        $tabs[] = [
-            'Community<br />Asset Inventory',
-            'http://asset.cberdata.org'
-        ];
-        $tabs[] = [
-            'Brownfield Grant<br />Writers\' Toolbox',
-            'http://brownfield.cberdata.org'
-        ];
-        $tabs[] = [
-            'Conexus Indiana<br />Report Card',
-            'http://conexus.cberdata.org'
-        ];
-        $this_subsite_url = Configure::read('data_center_subsite_url');
-        foreach ($tabs as $tab) {
-            echo "<a href=\"$tab[1]\"";
-            if ($tab[1] == $this_subsite_url) {
-                echo ' class="selected"';
-            }
-            echo ">$tab[0]</a>";
-        }
-    ?>
+    <?php foreach ($tabs as $tab): ?>
+        <?php if ($tab[1] == $this_subsite_url): ?>
+            <a href="<?= $tab[1] ?>" class="selected">
+                <?= $tab[0] ?>
+            </a>
+        <?php else: ?>
+            <a href="<?= $tab[1] ?>">
+                <?= $tab[0] ?>
+            </a>
+        <?php endif; ?>
+    <?php endforeach; ?>
 </nav>
