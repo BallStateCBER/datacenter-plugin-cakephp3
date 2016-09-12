@@ -72,18 +72,6 @@
                             Ball State University
                         </a>
                     </h1>
-                    <?php /*
-                    <div id="search">
-                        <form>
-                            <input type="text" name="search" value="Search CBERData.org" />
-                            <input type="submit" value="Go" />
-                        </form>
-                    </div>
-
-                    <div id="login_out">
-                        <a href="#">Login / Logout</a>
-                    </div>
-                    */ ?>
                     <br class="clear" />
                     <a href="http://cberdata.org/" id="data_center_nameplate">
                         CBER Data Center
