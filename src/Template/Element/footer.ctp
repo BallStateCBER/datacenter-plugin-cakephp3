@@ -2,7 +2,7 @@
     <div class="max_width">
         <div id="cberlogo_copyright">
             <a href="http://www.bsu.edu/cber">
-                <img src="<?= $pluginPath ?>/img/BallStateCBER-red.png" />
+                <img src="/data_center/img/BallStateCBER-red.png" />
             </a>
             <p>
                 &copy; Center for Business and Economic Research, Ball State University

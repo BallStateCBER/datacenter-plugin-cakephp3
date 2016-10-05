@@ -1,6 +1,5 @@
 <?php
     use Cake\Core\Configure;
-    $pluginPath = '/data_center';
 ?>
 <!DOCTYPE html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
@@ -41,7 +40,7 @@
             More useful tag suggestions at http://html5boilerplate.com/docs/head-Tips/
             Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons
         */ ?>
-        <link rel="shortcut icon" href="<?= $pluginPath ?>/img/favicon.ico" />
+        <link rel="shortcut icon" href="/data_center/img/favicon.ico" />
         <link href='http://fonts.googleapis.com/css?family=Asap:400,400italic,700' rel='stylesheet' type='text/css'>
         <?= $this->Html->css('style') ?>
         <?= $this->fetch('css') ?>
@@ -125,9 +124,9 @@
 
         <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
         <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="<?= $pluginPath ?>/js/jquery-1.9.1.min.js"><\/script>')</script>
+        <script>window.jQuery || document.write('<script src="/data_center/js/jquery-1.9.1.min.js"><\/script>')</script>
 
-        <?= $this->Html->script($pluginPath.'/js/datacenter.js') ?>
+        <?= $this->Html->script('/data_center/js/datacenter.js') ?>
         <?= $this->element('DataCenter.analytics') ?>
         <?= $this->fetch('scriptBottom') ?>
         <?= $this->fetch('script') ?>
