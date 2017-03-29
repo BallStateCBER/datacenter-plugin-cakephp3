@@ -41,7 +41,7 @@ use Cake\Core\Configure;
             Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons
         */ ?>
     <link rel="shortcut icon" href="/data_center/img/favicon.ico" />
-    <link href='http://fonts.googleapis.com/css?family=Asap:400,400italic,700' rel='stylesheet' type='text/css'>
+    <link href="//fonts.googleapis.com/css?family=Asap:400,400italic,700" rel="stylesheet" type="text/css">
     <?= $this->Html->css('style') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('scriptTop') ?>
@@ -143,7 +143,7 @@ use Cake\Core\Configure;
         try {if ($buoop.ol) $buoop.ol();}catch (e) {}
         var e = document.createElement("script");
         e.setAttribute("type", "text/javascript");
-        e.setAttribute("src", "http://browser-update.org/update.js");
+        e.setAttribute("src", "//browser-update.org/update.js");
         document.body.appendChild(e);
     }
 </script>
