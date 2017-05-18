@@ -53,14 +53,17 @@ strong {
 em {
     font-style: italic;
 }
-blockquote p {
-    display: inline;
+blockquote {
+    p {
+        display: inline;
+    }
 }
 abbr {
     border-bottom: 1px dashed #444;
     cursor: default;
 }
-sup , sub {
+sup,
+sub {
     vertical-align: baseline;
     position: relative;
     top: -0.4em;
@@ -77,6 +80,16 @@ ul {
     list-style-position: outside;
     list-style-type: disc;
 
+    &.unstyled {
+        margin: 0;
+        padding: 0;
+
+        li {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+    }
     > li {
         list-style-position: outside;
         list-style-type: disc;
@@ -91,16 +104,6 @@ acronym {
 br.clear {
     clear: both;
     height: 0px;
-}
-ul.unstyled {
-    margin: 0;
-    padding: 0;
-
-    li {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
-    }
 }
 
 /* LINKS */
@@ -312,6 +315,38 @@ header {
             }
         }
     }
+    nav {
+        float: right;
+        margin-top: 10px;
+        bottom: 0;
+        right: 0;
+        position: absolute;
+
+        a {
+            background-color: #CC0000;
+            color: #FFF;
+            display: block;
+            float: left;
+            font-size: 10px;
+            font-weight: bold;
+            margin: 0 2px -5px 2px;
+            padding: 5px;
+            text-align: center;
+            text-transform: uppercase;
+            vertical-align: text-bottom;
+
+            &:last-child {
+                margin-right: 0;
+            }
+            &:hover {
+                background-color: #3a4040;
+                text-decoration: none;
+            }
+            &.selected {
+                background-color: #3A4040;
+            }
+        }
+    }
 }
 #login_out {
     float: right;
@@ -355,38 +390,6 @@ header {
     clear: left;
     margin-top: 10px;
     position: absolute;
-}
-#header_top nav {
-    float: right;
-    margin-top: 10px;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-
-    a {
-        background-color: #CC0000;
-        color: #FFF;
-        display: block;
-        float: left;
-        font-size: 10px;
-        font-weight: bold;
-        margin: 0 2px -5px 2px;
-        padding: 5px;
-        text-align: center;
-        text-transform: uppercase;
-        vertical-align: text-bottom;
-
-        &:last-child {
-            margin-right: 0;
-        }
-        &:hover {
-            background-color: #3a4040;
-            text-decoration: none;
-        }
-        &.selected {
-            background-color: #3A4040;
-        }
-    }
 }
 #subsite_title {
     background-color: #fff;
