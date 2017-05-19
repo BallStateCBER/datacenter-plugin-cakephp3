@@ -1,5 +1,5 @@
 <?php
-	$on_localhost = stripos($_SERVER['HTTP_HOST'], 'localhost') !== false;
+	$on_localhost = stripos(env('HTTP_HOST'), 'localhost') !== false;
 	$domain = $on_localhost ? '' : 'http://cberdata.org';
 	$plugin_path = $domain.'/data_center';
 ?>
