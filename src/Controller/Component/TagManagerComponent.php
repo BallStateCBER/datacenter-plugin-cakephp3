@@ -62,4 +62,34 @@ class TagManagerComponent extends Component
 
         return $tags;
     }
+
+    // prepare tag editor
+    public function prepareEditor($controller)
+    {
+        // Provide the full list of available tags to the tag editor in the view
+        $controller->set('availableTags', $this->getTags());
+
+        // Check and see if these tags have a 'listed' field
+        // (Listed tags show up under 'available tags' in the tag editor, unlisted do not)
+        $Tag = $this->Tags->newEntity();
+        if (isset($Tag->_schema['listed'])) {
+            $unlistedTags = array();
+
+            // Find any unlisted tags associated with this form
+            if (isset($controller->request->data['Tags'])) {
+                foreach ($controller->request->data['Tags'] as $tag) {
+                    $Tag->id = is_array($tag) ? $tag['id'] : $tag;
+                    $listed = isset($tag['listed']) ? $tag['listed'] : $Tag->field('listed');
+                    if (! $listed) {
+                        $unlistedTags[$Tag->id] = isset($tag['name']) ? $tag['name'] : $Tag->field('name');
+                    }
+                }
+            }
+
+            /* Since the tag editor normally auto-populates the 'selected tags' field with a list of tag IDs
+             * and pulls the names of those tags from the 'available tags' field, the names of unlisted tags
+             * will need to be provided to it with this variable. */
+            $controller->set(compact('unlisted_tags'));
+        }
+    }
 }
