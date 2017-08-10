@@ -1,5 +1,6 @@
 <?php
 use Cake\Core\Configure;
+
 ?>
 <!DOCTYPE html>
 <!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
@@ -49,6 +50,10 @@ use Cake\Core\Configure;
     <!--[if lt IE 9]>
     <script src="/data_center/js/html5shiv-printshiv.js"></script>
     <![endif]-->
+
+    <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="/data_center/js/jquery-1.9.1.min.js"><\/script>')</script>
 </head>
 <body class="default-layout">
 <?php /*
@@ -121,10 +126,6 @@ use Cake\Core\Configure;
         If you need assistance, <a href="http://www.enable-javascript.com/" target="_blank">Enable-JavaScript.com</a> provides instructions.
     </div>
 </noscript>
-
-<!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-<script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
-<script>window.jQuery || document.write('<script src="/data_center/js/jquery-1.9.1.min.js"><\/script>')</script>
 
 <?= $this->Html->script('/data_center/js/datacenter.js') ?>
 <?= $this->element('DataCenter.analytics') ?>
