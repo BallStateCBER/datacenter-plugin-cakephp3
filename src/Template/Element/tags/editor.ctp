@@ -102,7 +102,7 @@ echo $this->Html->script('tag_manager.js');
     if (! isset($options)) {
         $options = array();
     }
-    echo $this->Tag->setup($available_tags, $selected_tags, $options);
+    echo $this->Tag->setup($availableTags, $selectedTags, $options);
     if ($allow_custom) {
         $this->Js->buffer("TagManager.setupCustomTagInput();");
     }
