@@ -1,10 +1,10 @@
 <?php
-namespace App\View\Helper;
+namespace DataCenter\View\Helper;
 
 use Cake\View\Helper;
 use Cake\ORM\TableRegistry;
 
-class TagHelper extends AppHelper
+class TagHelper extends Helper
 {
     public $helpers = ['Html', 'Js'];
 
