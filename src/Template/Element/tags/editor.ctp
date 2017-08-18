@@ -12,7 +12,8 @@ if (! isset($selectedTags)) {
 if (!isset($hideLabel)) {
     $hideLabel = false;
 }
-echo $this->Html->script('tag_manager.js');
+echo $this->Html->script('/data_center/js/tag_manager.js');
+echo $this->Html->css('/data_center/css/tag_editor.css');
 ?>
 
 <div class="input" id="tag_editing">
@@ -100,7 +101,7 @@ echo $this->Html->script('tag_manager.js');
 
 <?php
     if (! isset($options)) {
-        $options = array();
+        $options = [];
     }
     echo $this->Tag->setup($availableTags, $selectedTags, $options);
     if ($allow_custom) {
