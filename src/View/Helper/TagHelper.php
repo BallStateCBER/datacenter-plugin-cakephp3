@@ -59,14 +59,12 @@ class TagHelper extends Helper
     }
     public function setup($available_tags, $selected_tags = [], $options = [])
     {
-        $this->Html->script('/data_center/js/tag_manager.js', ['inline' => false]);
-        $this->Html->css('/data_center/css/tag_editor.css', ['inline' => false]);
         $params = array(
-            'tags: '.$this->Js->object($this->availableTagsForJs($available_tags))
+            'tags: '.json_encode($this->availableTagsForJs($available_tags))
         );
         if (! empty($selected_tags)) {
             $selected_tags = $this->formatSelectedTags($selected_tags);
-            $params[] = 'selected_tags: '.$this->Js->object($this->selectedTagsForJs($selected_tags));
+            $params[] = 'selected_tags: '.json_encode($this->selectedTagsForJs($selected_tags));
         }
         if (! empty($options)) {
             foreach ($options as $var => $val) {
@@ -78,6 +76,10 @@ class TagHelper extends Helper
                 $params[] = "$var: $val";
             }
         }
-        $this->Js->buffer('TagManager.init({'.implode(', ', $params).'});');
+        echo '
+            <script>
+                TagManager.init({'.implode(', ', $params).'});
+            </script>
+        ';
     }
 }
