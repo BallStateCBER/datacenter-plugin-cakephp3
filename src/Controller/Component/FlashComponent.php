@@ -10,6 +10,7 @@ class FlashComponent extends Component
     public function beforeRender(\Cake\Event\Event $event)
 	{
 		$this->prepareFlashMessages($event);
+        $this->_registry->getController()->set('flashMessages', $this->messages);
 	}
 
 	// Adds a string message with a class of 'success', 'error', or 'notification' (default)
