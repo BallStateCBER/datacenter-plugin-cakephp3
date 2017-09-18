@@ -20,7 +20,6 @@
     <meta name="author" content="Center for Business and Economic Research, Ball State University" />
     <meta name="language" content="en" />
     <meta name="viewport" content="width=device-width" />
-    <meta http-equiv="imagetoolbar" content="false" />
     <?= $this->fetch('meta') ?>
     <?php /*
         Optional tags for <head>
