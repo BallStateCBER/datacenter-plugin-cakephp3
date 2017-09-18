@@ -3,11 +3,7 @@ use Cake\Core\Configure;
 
 ?>
 <!DOCTYPE html>
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!-- Consider adding a manifest.appcache: h5bp.com/d/Offline -->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<html lang="en">
 <head>
     <?= $this->Html->charset() ?>
     <link rel="dns-prefetch" href="//ajax.googleapis.com" />
