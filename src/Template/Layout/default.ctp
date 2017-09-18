@@ -54,6 +54,7 @@ use Cake\Core\Configure;
     <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="/data_center/js/jquery-1.9.1.min.js"><\/script>')</script>
+    <script src="/data_center/js/flash.js"></script>
 </head>
 <body class="default-layout">
 <?php /*
