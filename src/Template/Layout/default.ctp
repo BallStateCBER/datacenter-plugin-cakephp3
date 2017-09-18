@@ -16,7 +16,6 @@
         ?>
     </title>
     <meta name="title" content="<?= $title; ?>" />
-    <meta name="description" content="" />
     <meta name="author" content="Center for Business and Economic Research, Ball State University" />
     <meta name="language" content="en" />
     <meta name="viewport" content="width=device-width" />
