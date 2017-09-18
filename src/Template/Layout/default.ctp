@@ -111,7 +111,7 @@ use Cake\Core\Configure;
 <?= $this->element('DataCenter.footer') ?>
 
 <noscript>
-    <div id="noscript" style="background-color: #FFCBAF; border: 1px solid #7F0000; border-radius: 5px; -moz-border-radius: 5px; -webkit-border-radius: 5px; box-shadow: 2px 2px 2px rgba(0, 0, 0, .3); -moz-box-shadow: 2px 2px 2px rgba(0, 0, 0, .3); -webkit-box-shadow: 2px 2px 2px rgba(0, 0, 0, .3); color: #7F0000; font-weight: bold; left: 15px; padding: 20px; position: absolute; right: 15px; top: 15px; z-index: 10;">
+    <div id="noscript">
         JavaScript is currently disabled in your browser.
         For full functionality of this website, JavaScript must be enabled.
         If you need assistance, <a href="http://www.enable-javascript.com/" target="_blank">Enable-JavaScript.com</a> provides instructions.
