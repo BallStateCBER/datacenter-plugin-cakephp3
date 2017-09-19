@@ -110,7 +110,7 @@ class FlashComponent extends Component
             foreach ($storedMessages as &$message) {
                 if ($message['class'] == 'dump') {
                     $message = [
-                        'message' => '<pre>'.print_r($message['message'], true).'</pre>',
+                        'message' => '<pre>' . print_r($message['message'], true) . '</pre>',
                         'class' => 'notification'
                     ];
                 } else {
