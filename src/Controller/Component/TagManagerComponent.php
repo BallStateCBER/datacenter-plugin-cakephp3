@@ -97,8 +97,8 @@ class TagManagerComponent extends Component
             $unlistedTags = [];
 
             // Find any unlisted tags associated with this form
-            if (isset($controller->request->data['Tags'])) {
-                foreach ($controller->request->data['Tags'] as $tag) {
+            if ($controller->request->getData('Tags')) {
+                foreach ($controller->request->getData('Tags') as $tag) {
                     $Tag->id = is_array($tag) ? $tag['id'] : $tag;
                     $listed = isset($tag['listed']) ? $tag['listed'] : $Tag->field('listed');
                     if (! $listed) {

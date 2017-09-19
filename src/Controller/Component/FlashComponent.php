@@ -31,9 +31,9 @@ class FlashComponent extends Component
     public function set($message, $class = 'notification')
     {
         // Dot notation doesn't seem to allow for the equivalent of $messages['error'][] = $message
-        $storedMessages = $this->request->session()->read('FlashMessage');
+        $storedMessages = $this->getController()->request->getSession()->read('FlashMessage');
         $storedMessages[] = compact('message', 'class');
-        $this->request->session()->write('FlashMessage', $storedMessages);
+        $this->getController()->request->getSession()->write('FlashMessage', $storedMessages);
     }
 
     /**
@@ -88,23 +88,23 @@ class FlashComponent extends Component
      */
     private function prepareFlashMessages($event)
     {
-        $storedMessages = $this->request->session()->read('FlashMessage');
-        $this->request->session()->delete('FlashMessage');
-        $authError = $this->request->session()->read('Message.auth');
+        $storedMessages = $this->getController()->request->getSession()->read('FlashMessage');
+        $this->getController()->request->getSession()->delete('FlashMessage');
+        $authError = $this->getController()->request->getSession()->read('Message.auth');
         if ($authError) {
             $storedMessages[] = [
                 'message' => $authError['message'],
                 'class' => 'error'
             ];
-            $this->request->session()->delete('Message.auth');
+            $this->getController()->request->getSession()->delete('Message.auth');
         }
-        $other_messages = $this->request->session()->read('Message.flash');
+        $other_messages = $this->getController()->request->getSession()->read('Message.flash');
         if ($other_messages) {
             $storedMessages[] = [
                 'message' => $other_messages['message'],
                 'class' => 'notification'
             ];
-            $this->request->session()->delete('Message.flash');
+            $this->getController()->request->getSession()->delete('Message.flash');
         }
         if ($storedMessages) {
             foreach ($storedMessages as &$message) {
