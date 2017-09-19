@@ -83,6 +83,7 @@ class TagManagerComponent extends Component
      * Prepares the tag editor
      *
      * @param Controller $controller CakePHP controller
+     * @return void
      */
     public function prepareEditor($controller)
     {
