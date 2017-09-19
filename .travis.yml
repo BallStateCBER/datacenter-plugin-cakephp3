@@ -1,0 +1,39 @@
+language: php
+
+sudo: false
+
+php:
+  - 7.1
+
+matrix:
+  fast_finish: true
+
+  include:
+    - php: 7.1
+      env: PHPCS=1
+
+services:
+  - mysql
+
+before_script:
+  - if [[ $PHPCS = 1 ]]; then composer require cakephp/cakephp-codesniffer:*; fi
+  - if [[ $PHPCS != 1 ]]; then composer install; fi
+  - if [[ $PHPCS != 1 ]]; then composer run-script post-install-cmd --no-interaction; fi
+  - sh -c "mysql -e 'CREATE DATABASE IF NOT EXISTS dc_cri_testing;'"
+  - phpenv rehash
+
+script:
+  - if [[ $PHPCS != 1 ]]; then vendor/bin/phpunit --coverage-clover build/logs/clover.xml; fi
+  - if [[ $PHPCS != 1 ]]; then mkdir -p build/logs; fi
+  - if [[ $PHPCS = 1 ]]; then vendor/bin/phpcs -p --extensions=php --error-severity=1 --warning-severity=0 --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./tests ./config ./webroot; fi
+
+notifications:
+  email: false
+  slack: cber:ZeUxtjnpHNEYCkMtUBhskwXl
+
+addons:
+  code_climate:
+    repo_token: 6f9e5cdde0fa1fe6e6a6438f7e4b420e7421359473738bdb5b60c5c3f2113a25
+
+after_success:
+  - vendor/bin/test-reporter
