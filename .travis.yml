@@ -25,7 +25,7 @@ before_script:
 script:
   - if [[ $PHPCS != 1 ]]; then vendor/bin/phpunit --coverage-clover build/logs/clover.xml; fi
   - if [[ $PHPCS != 1 ]]; then mkdir -p build/logs; fi
-  - if [[ $PHPCS = 1 ]]; then vendor/bin/phpcs -p --extensions=php --error-severity=1 --warning-severity=0 --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./tests ./config ./webroot; fi
+  - if [[ $PHPCS = 1 ]]; then vendor/bin/phpcs -p --extensions=php --error-severity=1 --warning-severity=0 --standard=vendor/cakephp/cakephp-codesniffer/CakePHP ./src ./tests ./config; fi
 
 notifications:
   email: false
