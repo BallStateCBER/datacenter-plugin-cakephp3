@@ -111,9 +111,9 @@ var TagManager = {
 	},
 
 	createTagTree: function () {
-		var tree_container = $('<div id="available_tags_tree"></div>');
-		this.container.append(tree_container);
-		this.createTagTreeBranch(this.tags, tree_container);
+		var treeContainer = $('<div id="available_tags_tree"></div>');
+		this.container.append(treeContainer);
+		this.createTagTreeBranch(this.tags, treeContainer);
 	},
 
 	/**
@@ -125,79 +125,79 @@ var TagManager = {
 	createTagTreeBranch: function(data, container) {
 		var list = $('<ul></ul>');
 		for (var i = 0; i < data.length; i++) {
-			var tag_id = data[i].id;
-			var tag_name = data[i].name;
+			var tagId = data[i].id;
+			var tagName = data[i].name;
 			var children = data[i].children;
-			var has_children = (children.length > 0);
-			var is_selectable = data[i].selectable;
-			var list_item = $('<li data-tag-id="' + tag_id + '"></li>');
+			var hasChildren = (children.length > 0);
+			var isSelectable = data[i].selectable;
+			var listItem = $('<li data-tag-id="' + tagId + '"></li>');
 			var row = $('<div class="single_row"></div>');
-			list_item.append(row);
-			list.append(list_item);
+			listItem.append(row);
+			list.append(listItem);
 
-			if (is_selectable) {
-				var tag_link = $('<a href="#" title="Click to select" data-tag-id="' + tag_id + '"></a>');
-				tag_link.addClass('available_tag');
-				tag_link.append(tag_name);
-				(function(tag_id) {
-					tag_link.click(function (event) {
+			if (isSelectable) {
+				var tagLink = $('<a href="#" title="Click to select" data-tag-id="' + tagId + '"></a>');
+				tagLink.addClass('available_tag');
+				tagLink.append(tagName);
+				(function(tagId) {
+					tagLink.click(function (event) {
 						event.preventDefault();
 						var link = $(this);
-						var tag_name = link.html();
-						var list_item = link.closest('li');
-						TagManager.selectTag(tag_id, tag_name, list_item);
+						var tagName = link.html();
+						var listItem = link.closest('li');
+						TagManager.selectTag(tagId, tagName, listItem);
 					});
-				})(tag_id);
-				tag_name = tag_link;
+				})(tagId);
+				tagName = tagLink;
 			}
 
 			// Bullet point
-			if (has_children) {
-				var collapsed_icon = $('<a href="#" title="Click to expand/collapse"></a>');
+			if (hasChildren) {
+				var collapsedIcon = $('<a href="#" title="Click to expand/collapse"></a>');
 				var img = $('<img src="/data_center/img/icons/menu-collapsed.png" class="expand_collapse" />');
-				collapsed_icon.append(img);
+				collapsedIcon.append(img);
 				(function(children) {
-					collapsed_icon.click(function(event) {
+					collapsedIcon.click(function(event) {
 						event.preventDefault();
 						var icon = $(this);
-						var icon_container = icon.parent('div');
-						var children_container = icon_container.next('.children');
+						var iconContainer = icon.parent('div');
+						var childrenContainer = iconContainer.next('.children');
 
 						// Populate list if it is empty
-						if (children_container.is(':empty')) {
-							TagManager.createTagTreeBranch(children, children_container);
+						if (childrenContainer.is(':empty')) {
+							TagManager.createTagTreeBranch(children, childrenContainer);
 						}
 
 						// Open/close
-						children_container.slideToggle(200, function() {
-							var icon_image = icon.children('img.expand_collapse');
-							if (children_container.is(':visible')) {
-								icon_image.prop('src', '/data_center/img/icons/menu-expanded.png');
+						childrenContainer.slideToggle(200, function() {
+							var iconImage = icon.children('img.expand_collapse');
+							if (childrenContainer.is(':visible')) {
+								iconImage.prop('src', '/data_center/img/icons/menu-expanded.png');
 							} else {
-								icon_image.prop('src', '/data_center/img/icons/menu-collapsed.png');
+								iconImage.prop('src', '/data_center/img/icons/menu-collapsed.png');
 							}
 						});
 					});
 				})(children);
 
-				row.append(collapsed_icon);
+				row.append(collapsedIcon);
 			} else {
 				row.append('<img src="/data_center/img/icons/menu-leaf.png" class="leaf" />');
 			}
 
-			row.append(tag_name);
+			row.append(tagName);
 
 			// Tag and submenu
-			if (has_children) {
-				var children_container = $('<div style="display: none;" class="children"></div>');
-				row.after(children_container);
+			if (hasChildren) {
+				var childrenContainer = $('<div style="display: none;" class="children"></div>');
+				row.after(childrenContainer);
 			}
 
 			// If tag has been selected
-			if (is_selectable && this.tagIsSelected(tag_id)) {
-				tag_name.addClass('selected');
-				if (! has_children) {
-					list_item.hide();
+			if (isSelectable && this.tagIsSelected(tagId)) {
+				tagName.addClass('selected');
+				if (! hasChildren) {
+					listItem.hide();
 				}
 			}
 		}
@@ -209,190 +209,190 @@ var TagManager = {
 		this.tag_list.sort();
 		var list = $('<ul></ul>');
 		for (var i = 0; i < this.tag_list.length; i++) {
-			var tag_name = this.tag_list[i];
-			var tag_id = this.tags_ids[tag_name];
-			var list_item = $('<li data-tag-id="'+tag_id+'"></li>');
+			var tagName = this.tag_list[i];
+			var tagId = this.tags_ids[tagName];
+			var listItem = $('<li data-tag-id="'+tagId+'"></li>');
 
-			var tag_link = $('<a href="#" class="available_tag" title="Click to select" data-tag-id="'+tag_id+'"></a>');
-			tag_link.append(tag_name);
-			(function(tag_id) {
-				tag_link.click(function (event) {
+			var tagLink = $('<a href="#" class="available_tag" title="Click to select" data-tag-id="'+tagId+'"></a>');
+			tagLink.append(tagName);
+			(function(tagId) {
+				tagLink.click(function (event) {
 					event.preventDefault();
 					var link = $(this);
-					var tag_name = link.html();
-					var list_item = link.closest('li');
-					TagManager.selectTag(tag_id, tag_name, list_item);
+					var tagName = link.html();
+					var listItem = link.closest('li');
+					TagManager.selectTag(tagId, tagName, listItem);
 				});
-			})(tag_id);
-			list_item.append(tag_link);
-			list.append(list_item);
+			})(tagId);
+			listItem.append(tagLink);
+			list.append(listItem);
 		}
 
-		var list_container = $('<div id="available_tags_list"></div>');
-		list_container.append(list);
-		this.container.append(list_container);
+		var listContainer = $('<div id="available_tags_list"></div>');
+		listContainer.append(list);
+		this.container.append(listContainer);
 	},
 
 	processTagList: function (data) {
 		for (var i = 0; i < data.length; i++) {
-			var tag_id = data[i].id;
-			var tag_name = data[i].name;
+			var tagId = data[i].id;
+			var tagName = data[i].name;
 			var children = data[i].children;
-			var has_children = (children.length > 0);
-			var is_selectable = data[i].selectable;
-			if (is_selectable) {
-				this.tag_list.push(tag_name);
-				this.tags_ids[tag_name] = tag_id;
+			var hasChildren = (children.length > 0);
+			var isSelectable = data[i].selectable;
+			if (isSelectable) {
+				this.tag_list.push(tagName);
+				this.tags_ids[tagName] = tagId;
 			}
-			if (has_children) {
+			if (hasChildren) {
 				this.processTagList(children);
 			}
 		}
 	},
 
-	tagIsSelected: function(tag_id) {
-		var selected_tags = $('#selected_tags').find('a');
-		for (var i = 0; i < selected_tags.length; i++) {
-			var tag = $(selected_tags[i]);
-			if (tag.data('tagId') === tag_id) {
+	tagIsSelected: function(tagId) {
+		var selectedTags = $('#selected_tags').find('a');
+		for (var i = 0; i < selectedTags.length; i++) {
+			var tag = $(selectedTags[i]);
+			if (tag.data('tagId') === tagId) {
 				return true;
 			}
 		}
 		return false;
 	},
 
-	preselectTags: function(selected_tags) {
-		if (selected_tags.length === 0) {
+	preselectTags: function(selectedTags) {
+		if (selectedTags.length === 0) {
 			return;
 		}
 		$('#selected_tags_container').show();
-		for (var i = 0; i < selected_tags.length; i++) {
-			TagManager.selectTag(selected_tags[i].id, selected_tags[i].name);
+		for (var i = 0; i < selectedTags.length; i++) {
+			TagManager.selectTag(selectedTags[i].id, selectedTags[i].name);
 		}
 	},
 
-	unselectTag: function(tag_id, unselect_link) {
-		var available_tag_links = this.container.find('a[data-tag-id="' + tag_id + '"]');
+	unselectTag: function(tagId, unselectLink) {
+		var availableTagLinks = this.container.find('a[data-tag-id="' + tagId + '"]');
 
 		// If available tag has not yet been loaded, then simply remove the selected tag
-		if (available_tag_links.length === 0) {
-			TagManager.removeUnselectLink(unselect_link);
+		if (availableTagLinks.length === 0) {
+			TagManager.removeUnselectLink(unselectLink);
 			return;
 		}
 
-		available_tag_links.each(function () {
+		availableTagLinks.each(function () {
 			var link = $(this).removeClass('selected');
 			var li = link.closest('li');
-			var open_tab = link.closest('#available_tags_tree, #available_tags_list');
+			var openTab = link.closest('#available_tags_tree, #available_tags_list');
 
 			// If this link is in an unopened tab, don't animate anything
-			if (! open_tab.is(':visible')) {
+			if (! openTab.is(':visible')) {
 				li.show();
 				// Only remove the unselect link if this is the only iteration of this loop
 				// Otherwise, the link in the opened tab needs the unselect link present for the transfer effect
-				if (available_tag_links.length === 1) {
-					TagManager.removeUnselectLink(unselect_link);
+				if (availableTagLinks.length === 1) {
+					TagManager.removeUnselectLink(unselectLink);
 				}
 				return;
 			}
 
-			var transfer_effect = function () {
+			var transferEffect = function () {
 				// Don't show the transfer effect if there's no visible link to transfer to
-				if (! TagManager.availableTagIsVisible(link, open_tab)) {
-					TagManager.removeUnselectLink(unselect_link);
+				if (! TagManager.availableTagIsVisible(link, openTab)) {
+					TagManager.removeUnselectLink(unselectLink);
 					return;
 				}
 				var options = {
 					to: link,
 					className: 'ui-effects-transfer'
 				};
-				unselect_link.effect('transfer', options, 200, function () {
-					TagManager.removeUnselectLink(unselect_link);
+				unselectLink.effect('transfer', options, 200, function () {
+					TagManager.removeUnselectLink(unselectLink);
 				});
 			};
 
 			// If the link container doesn't need to be revealed
 			if (li.is(':visible')) {
-				transfer_effect();
+				transferEffect();
 
 			// If the link container needs to be revealed (and would be visible during the reveal)
 			} else if (li.parent().is(':visible')) {
 				li.slideDown(200, function () {
-					transfer_effect();
+					transferEffect();
 				});
 
 			} else {
 				li.show();
-				TagManager.removeUnselectLink(unselect_link);
+				TagManager.removeUnselectLink(unselectLink);
 			}
 		});
 	},
 
-	availableTagIsVisible: function (link, scrollable_area) {
+	availableTagIsVisible: function (link, scrollableArea) {
 		if (! link.is(':visible')) {
 			return false;
 		}
-		return (link.position().top + link.height() > 0 && link.position().top < scrollable_area.height());
+		return (link.position().top + link.height() > 0 && link.position().top < scrollableArea.height());
 	},
 
-	removeUnselectLink: function (unselect_link) {
-		unselect_link.fadeOut(200, function () {
-			unselect_link.remove();
+	removeUnselectLink: function (unselectLink) {
+		unselectLink.fadeOut(200, function () {
+			unselectLink.remove();
 			if ($('#selected_tags').children().length === 0) {
 				$('#selected_tags_container').slideUp(200);
 			}
 		});
 	},
 
-	selectTag: function(tag_id, tag_name) {
-		var selected_container = $('#selected_tags_container');
-		if (! selected_container.is(':visible')) {
-			selected_container.slideDown(200);
+	selectTag: function(tagId, tagName) {
+		var selectedContainer = $('#selected_tags_container');
+		if (! selectedContainer.is(':visible')) {
+			selectedContainer.slideDown(200);
 		}
 
 		// Do not add tag if it is already selected
-		if (this.tagIsSelected(tag_id)) {
+		if (this.tagIsSelected(tagId)) {
 			return;
 		}
 
 		// Add tag
-		var list_item = $('<a href="#" title="Click to remove" data-tag-id="' + tag_id + '"></a>');
-		list_item.append(tag_name);
-		list_item.append('<input type="hidden" name="data[Tag][]" value="' + tag_id + '" />');
-		list_item.click(function (event) {
+		var listItem = $('<a href="#" title="Click to remove" data-tag-id="' + tagId + '"></a>');
+		listItem.append(tagName);
+		listItem.append('<input type="hidden" name="data[Tag][]" value="' + tagId + '" />');
+		listItem.click(function (event) {
 			event.preventDefault();
-			var unselect_link = $(this);
-			var tag_id = unselect_link.data('tagId');
-			TagManager.unselectTag(tag_id, unselect_link);
+			var unselectLink = $(this);
+			var tagId = unselectLink.data('tagId');
+			TagManager.unselectTag(tagId, unselectLink);
 		});
-		list_item.hide();
-		$('#selected_tags').append(list_item);
-		list_item.fadeIn(200);
+		listItem.hide();
+		$('#selected_tags').append(listItem);
+		listItem.fadeIn(200);
 
 		// If available tag has not yet been loaded, then there's no need to mess with its link
-		if ($('li[data-tag-id="' + tag_id + '"]').length === 0) {
+		if ($('li[data-tag-id="' + tagId + '"]').length === 0) {
 			return;
 		}
 
 		// Hide/update links to add tag
-		var links = this.container.find('a[data-tag-id="' + tag_id + '"]');
+		var links = this.container.find('a[data-tag-id="' + tagId + '"]');
 		links.each(function () {
 			var link = $(this);
 			var callback = function() {
 				link.addClass('selected');
-				var parent_li = link.closest('li');
-				var children = parent_li.children('.children');
+				var parentLi = link.closest('li');
+				var children = parentLi.children('.children');
 				if (children.length === 0) {
-					if (parent_li.is(':visible')) {
-						parent_li.slideUp(200);
+					if (parentLi.is(':visible')) {
+						parentLi.slideUp(200);
 					} else {
-						parent_li.hide();
+						parentLi.hide();
 					}
 				}
 			};
 			if (link.is(':visible')) {
 				var options = {
-					to: '#selected_tags a[data-tag-id="' + tag_id + '"]',
+					to: '#selected_tags a[data-tag-id="' + tagId + '"]',
 					className: 'ui-effects-transfer'
 				};
 				link.effect('transfer', options, 200, callback);
@@ -428,10 +428,10 @@ var TagManager = {
 				return false;
 			},
 			select: function(event, ui) {
-				var tag_name = ui.item.label;
+				var tagName = ui.item.label;
 				var terms = TagManager.split(this.value);
 				terms.pop();
-				terms.push(tag_name);
+				terms.push(tagName);
 
 				// Add placeholder to get the comma-and-space at the end
 				terms.push('');
@@ -474,9 +474,9 @@ var TagManager = {
 			},
 			select: function(event, ui) {
 				// Add the selected term to 'selected tags'
-				var tag_name = ui.item.label;
-				var tag_id = ui.item.value;
-				TagManager.selectTag(tag_id, tag_name);
+				var tagName = ui.item.label;
+				var tagId = ui.item.value;
+				TagManager.selectTag(tagId, tagName);
 
 				var terms = TagManager.split(this.value);
 
