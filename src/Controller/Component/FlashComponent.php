@@ -83,10 +83,9 @@ class FlashComponent extends Component
     /**
      * Sets an array to be displayed by the element 'flash_messages'
      *
-     * @param Event $event A CakePHP event
      * @return void
      */
-    private function prepareFlashMessages($event)
+    private function prepareFlashMessages()
     {
         $storedMessages = $this->getController()->request->getSession()->read('FlashMessage');
         $this->getController()->request->getSession()->delete('FlashMessage');
