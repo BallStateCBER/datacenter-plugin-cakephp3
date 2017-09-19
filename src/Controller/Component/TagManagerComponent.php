@@ -42,16 +42,11 @@ class TagManagerComponent extends Component
     /**
      * Returns a nested collection of tags for the selected (or default) model
      *
-     * @param null|string $model
-     * @param null|int $id
      * @return array
      */
-    public function getTags($model = null, $id = null)
+    public function getTags()
     {
         $this->Tags = TableRegistry::get('Tags');
-        if (!$model) {
-            $model = $this->modelClass;
-        }
         $tags = $this->Tags->find('threaded')
             ->select(['name', 'id', 'parent_id', 'selectable'])
             ->order(['name' => 'ASC'])
