@@ -113,8 +113,6 @@ class FlashComponent extends Component
                         'message' => '<pre>' . print_r($message['message'], true) . '</pre>',
                         'class' => 'notification'
                     ];
-                } else {
-                    $message['message'] = $message['message'];
                 }
             }
         }
