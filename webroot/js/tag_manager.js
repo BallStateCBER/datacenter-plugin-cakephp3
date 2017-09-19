@@ -370,7 +370,7 @@ var TagManager = {
 		list_item.fadeIn(200);
 
 		// If available tag has not yet been loaded, then there's no need to mess with its link
-		if ($('li[data-tag-id="' + tag_id + '"]').length == 0) {
+		if ($('li[data-tag-id="' + tag_id + '"]').length === 0) {
 			return;
 		}
 
