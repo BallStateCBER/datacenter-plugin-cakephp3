@@ -74,3 +74,6 @@ local.properties
 
 ### PhpStorm
 .idea/*
+
+### NPM
+/node_modules/*
