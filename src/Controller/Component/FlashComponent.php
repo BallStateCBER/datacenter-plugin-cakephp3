@@ -72,7 +72,7 @@ class FlashComponent extends Component
     /**
      * A convenience method for set($message, 'dump')
      *
-     * @param string $message The message
+     * @param mixed $variable The variable being dumped
      * @return void
      */
     public function dump($variable)
