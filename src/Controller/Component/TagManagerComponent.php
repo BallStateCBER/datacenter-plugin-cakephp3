@@ -35,6 +35,7 @@ class TagManagerComponent extends Component
             $occurrences = $row['occurrences'];
             $tagCloud[] = compact('name', 'id', 'occurrences');
         }
+
         return $tagCloud;
     }
 

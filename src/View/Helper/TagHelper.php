@@ -44,6 +44,7 @@ class TagHelper extends Helper
                 'name' => $tag->name
             ];
         }
+
         return $arrayForJson;
     }
 
