@@ -1,8 +1,8 @@
 <?php
 namespace DataCenter\View\Helper;
 
-use Cake\View\Helper;
 use Cake\ORM\TableRegistry;
+use Cake\View\Helper;
 
 class TagHelper extends Helper
 {
