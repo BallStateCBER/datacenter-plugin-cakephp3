@@ -288,8 +288,9 @@ var TagManager = {
 			// If this link is in an unopened tab, don't animate anything
 			if (! openTab.is(':visible')) {
 				li.show();
-				// Only remove the unselect link if this is the only iteration of this loop
-				// Otherwise, the link in the opened tab needs the unselect link present for the transfer effect
+
+				/* Only remove the unselect link if this is the only iteration of this loop.
+				 * Otherwise, the link in the opened tab needs the unselect link present for the transfer effect. */
 				if (availableTagLinks.length === 1) {
 					TagManager.removeUnselectLink(unselectLink);
 				}
@@ -469,7 +470,7 @@ var TagManager = {
 				$('#tag_autosuggest_loading').hide();
 			},
 			focus: function() {
-				// prevent value inserted on focus
+				// Prevent value inserted on focus
 				return false;
 			},
 			select: function(event, ui) {
