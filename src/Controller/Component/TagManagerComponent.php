@@ -99,7 +99,7 @@ class TagManagerComponent extends Component
          * (Listed tags show up under 'available tags' in the tag editor, unlisted do not) */
         $Tag = $this->Tags->newEntity();
         if (isset($Tag->_schema['listed'])) {
-            $unlistedTags = array();
+            $unlistedTags = [];
 
             // Find any unlisted tags associated with this form
             if (isset($controller->request->data['Tags'])) {
