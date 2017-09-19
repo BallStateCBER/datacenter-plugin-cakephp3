@@ -11,6 +11,9 @@ var TagManager = {
 	/** Used by preselectTags() */
 	selected_tags: [],
 
+	/** The minimum string length to begin searching for autocomplete results */
+    minLengthForSearch: 2,
+
 	container: null,
 	show_tree: true,
 	show_list: false,
@@ -457,10 +460,9 @@ var TagManager = {
 			},
 			delay: 0,
 			search: function() {
-				// custom minLength
 				var term = TagManager.extractLast(this.value);
-				if (term.length < 2) {
-					//	return false;
+				if (term.length < TagManager.minLengthForSearch) {
+					return;
 				}
 				$('#tag_autosuggest_loading').show();
 			},
