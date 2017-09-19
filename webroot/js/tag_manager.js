@@ -1,20 +1,18 @@
 var TagManager = {
-	// A tree-shaped object provided to init()
+	/** A tree-shaped object provided to init() **/
 	tags: [],
 
-	// A one-dimensional array populated by createTagList()
+	/** A one-dimensional array populated by createTagList() */
 	tag_list: [],
 
-	// An object with tag_name: tag_id pairs populated by createTagList()
+	/** An object with tag_name: tag_id pairs populated by createTagList() */
 	tags_ids: {},
 
-	// Used by preselectTags()
+	/** Used by preselectTags() */
 	selected_tags: [],
 
 	container: null,
-
 	show_tree: true,
-
 	show_list: false,
 
 	init: function (options) {
@@ -72,20 +70,25 @@ var TagManager = {
 
 	checkRequirements: function () {
 		var passes = true;
+		var msg = '';
 		if (! window.jQuery) {
 			this.showError('Error: The tag manager requires jQuery.');
 			passes = false;
 		} else {
-			if (! $.effects || ! $.effects.effect['transfer']) {
-				this.showError('Error: The jQuery UI transfer effect is required for the tag manager but has not been loaded.');
+			if (! $.effects || ! $.effects.effect.transfer) {
+				msg = 'Error: The jQuery UI transfer effect is required for the tag manager but has not been loaded.';
+				this.showError(msg);
 				passes = false;
 			}
 			if (! $.isFunction($.fn.autocomplete)) {
-				this.showError('Error: The jQuery UI autocomplete widget is required for the tag manager but has not been loaded.');
+				msg = 'Error: The jQuery UI autocomplete widget is required for the tag manager ' +
+					'but has not been loaded.';
+				this.showError(msg);
 				passes = false;
 			}
 			if (! $.isFunction($.fn.tabs)) {
-				this.showError('Error: The jQuery UI tabs widget is required for the tag manager but has not been loaded.');
+				msg = 'Error: The jQuery UI tabs widget is required for the tag manager but has not been loaded.';
+				this.showError(msg);
 				passes = false;
 			}
 		}
@@ -101,7 +104,7 @@ var TagManager = {
 	},
 
 	showError: function (message) {
-		this.container.prepend('<p style="color: red;">'+message+'</p>');
+		this.container.prepend('<p style="color: red;">' + message + '</p>');
 	},
 
 	createTagTree: function () {
@@ -111,9 +114,10 @@ var TagManager = {
 	},
 
 	/**
-	 * @param data An array of tag objects
-	 * @param container $('#container_id')
-	 * @returns
+	 * Appends to container a branch of the tag tree
+	 *
+	 * @param {Object[]} data - An array of tag objects
+	 * @param {Object} container - $('#container_id')
 	 */
 	createTagTreeBranch: function(data, container) {
 		var list = $('<ul></ul>');
@@ -123,13 +127,14 @@ var TagManager = {
 			var children = data[i].children;
 			var has_children = (children.length > 0);
 			var is_selectable = data[i].selectable;
-			var list_item = $('<li data-tag-id="'+tag_id+'"></li>');
+			var list_item = $('<li data-tag-id="' + tag_id + '"></li>');
 			var row = $('<div class="single_row"></div>');
 			list_item.append(row);
 			list.append(list_item);
 
 			if (is_selectable) {
-				var tag_link = $('<a href="#" class="available_tag" title="Click to select" data-tag-id="'+tag_id+'"></a>');
+				var tag_link = $('<a href="#" title="Click to select" data-tag-id="' + tag_id + '"></a>');
+				tag_link.addClass('available_tag');
 				tag_link.append(tag_name);
 				(function(tag_id) {
 					tag_link.click(function (event) {
@@ -146,13 +151,13 @@ var TagManager = {
 			// Bullet point
 			if (has_children) {
 				var collapsed_icon = $('<a href="#" title="Click to expand/collapse"></a>');
-				collapsed_icon.append('<img src="/data_center/img/icons/menu-collapsed.png" class="expand_collapse" />');
+				var img = $('<img src="/data_center/img/icons/menu-collapsed.png" class="expand_collapse" />');
+				collapsed_icon.append(img);
 				(function(children) {
 					collapsed_icon.click(function(event) {
 						event.preventDefault();
 						var icon = $(this);
 						var icon_container = icon.parent('div');
-						// var children = data[i].children;
 						var children_container = icon_container.next('.children');
 						var row = icon_container.parent('li');
 
@@ -198,7 +203,6 @@ var TagManager = {
 	},
 
 	createTagList: function () {
-		this.container.append(list_container);
 		this.processTagList(this.tags);
 		this.tag_list.sort();
 		var list = $('<ul></ul>');
@@ -245,10 +249,10 @@ var TagManager = {
 	},
 
 	tagIsSelected: function(tag_id) {
-		var selected_tags = $('#selected_tags a');
+		var selected_tags = $('#selected_tags').find('a');
 		for (var i = 0; i < selected_tags.length; i++) {
 			var tag = $(selected_tags[i]);
-			if (tag.data('tagId') == tag_id) {
+			if (tag.data('tagId') === tag_id) {
 				return true;
 			}
 		}
@@ -256,7 +260,7 @@ var TagManager = {
 	},
 
 	preselectTags: function(selected_tags) {
-		if (selected_tags.length == 0) {
+		if (selected_tags.length === 0) {
 			return;
 		}
 		$('#selected_tags_container').show();
@@ -266,12 +270,10 @@ var TagManager = {
 	},
 
 	unselectTag: function(tag_id, unselect_link) {
-		var available_tag_links = this.container.find('a[data-tag-id="'+tag_id+'"]');
-
-		//var available_tag_list_item = this.container.find('li[data-tag-id="'+tag_id+'"]');
+		var available_tag_links = this.container.find('a[data-tag-id="' + tag_id + '"]');
 
 		// If available tag has not yet been loaded, then simply remove the selected tag
-		if (available_tag_links.length == 0) {
+		if (available_tag_links.length === 0) {
 			TagManager.removeUnselectLink(unselect_link);
 			return;
 		}
@@ -334,7 +336,7 @@ var TagManager = {
 	removeUnselectLink: function (unselect_link) {
 		unselect_link.fadeOut(200, function () {
 			unselect_link.remove();
-			if ($('#selected_tags').children().length == 0) {
+			if ($('#selected_tags').children().length === 0) {
 				$('#selected_tags_container').slideUp(200);
 			}
 		});
@@ -352,9 +354,9 @@ var TagManager = {
 		}
 
 		// Add tag
-		var list_item = $('<a href="#" title="Click to remove" data-tag-id="'+tag_id+'"></a>');
+		var list_item = $('<a href="#" title="Click to remove" data-tag-id="' + tag_id + '"></a>');
 		list_item.append(tag_name);
-		list_item.append('<input type="hidden" name="data[Tag][]" value="'+tag_id+'" />');
+		list_item.append('<input type="hidden" name="data[Tag][]" value="' + tag_id + '" />');
 		list_item.click(function (event) {
 			event.preventDefault();
 			var unselect_link = $(this);
@@ -366,19 +368,19 @@ var TagManager = {
 		list_item.fadeIn(200);
 
 		// If available tag has not yet been loaded, then there's no need to mess with its link
-		if ($('li[data-tag-id="'+tag_id+'"]').length == 0) {
+		if ($('li[data-tag-id="' + tag_id + '"]').length == 0) {
 			return;
 		}
 
 		// Hide/update links to add tag
-		var links = this.container.find('a[data-tag-id="'+tag_id+'"]');
+		var links = this.container.find('a[data-tag-id="' + tag_id + '"]');
 		links.each(function () {
 			var link = $(this);
 			var callback = function() {
 				link.addClass('selected');
 				var parent_li = link.closest('li');
 				var children = parent_li.children('.children');
-				if (children.length == 0) {
+				if (children.length === 0) {
 					if (parent_li.is(':visible')) {
 						parent_li.slideUp(200);
 					} else {
@@ -388,7 +390,7 @@ var TagManager = {
 			};
 			if (link.is(':visible')) {
 				var options = {
-					to: '#selected_tags a[data-tag-id="'+tag_id+'"]',
+					to: '#selected_tags a[data-tag-id="' + tag_id + '"]',
 					className: 'ui-effects-transfer'
 				};
 				link.effect('transfer', options, 200, callback);
@@ -428,8 +430,10 @@ var TagManager = {
 				var terms = TagManager.split(this.value);
 				terms.pop();
 				terms.push(tag_name);
+
 				// Add placeholder to get the comma-and-space at the end
 				terms.push('');
+
 				this.value = terms.join(', ');
 				return false;
 			}
@@ -441,7 +445,7 @@ var TagManager = {
 			selector = '#custom_tag_input';
 		}
 		$(selector).bind('keydown', function (event) {
-			// don't navigate away from the field on tab when selecting an item
+			// Prevent navigation away from the field on tab when selecting an item
 			if (event.keyCode === $.ui.keyCode.TAB && $(this).data('autocomplete').menu.active) {
 				event.preventDefault();
 			}
@@ -456,7 +460,7 @@ var TagManager = {
 				// custom minLength
 				var term = TagManager.extractLast(this.value);
 				if (term.length < 2) {
-				//	return false;
+					//	return false;
 				}
 				$('#tag_autosuggest_loading').show();
 			},
@@ -474,12 +478,15 @@ var TagManager = {
 				TagManager.selectTag(tag_id, tag_name);
 
 				var terms = TagManager.split(this.value);
+
 				// Remove the term being typed from the input field
 				terms.pop();
+
 				if (terms.length > 0) {
 					// Add placeholder to get the comma-and-space at the end
 					terms.push('');
 				}
+
 				this.value = terms.join(', ');
 
 				return false;
