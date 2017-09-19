@@ -5,7 +5,6 @@ use Cake\Controller\Component;
 use Cake\Controller\Controller;
 use Cake\Datasource\ConnectionManager;
 use Cake\ORM\TableRegistry;
-use Cake\Utility\Inflector;
 
 class TagManagerComponent extends Component
 {
