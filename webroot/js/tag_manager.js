@@ -162,7 +162,6 @@ var TagManager = {
 						var icon = $(this);
 						var icon_container = icon.parent('div');
 						var children_container = icon_container.next('.children');
-						var row = icon_container.parent('li');
 
 						// Populate list if it is empty
 						if (children_container.is(':empty')) {
@@ -345,7 +344,7 @@ var TagManager = {
 		});
 	},
 
-	selectTag: function(tag_id, tag_name, available_tag_list_item) {
+	selectTag: function(tag_id, tag_name) {
 		var selected_container = $('#selected_tags_container');
 		if (! selected_container.is(':visible')) {
 			selected_container.slideDown(200);
