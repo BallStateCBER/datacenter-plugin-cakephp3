@@ -28,6 +28,7 @@ class TagManagerComponent extends Component
             GROUP BY $table.tag_id
             ORDER BY tags.name ASC
         ");
+        $tagCloud = [];
         foreach ($result as $row) {
             $name = $row['name'];
             $id = $row['tag_id'];
