@@ -16,17 +16,33 @@ use DataCenter\Controller\AppController;
  */
 class PagesController extends AppController
 {
+
+    /**
+     * Initialize method
+     *
+     * @return void
+     */
     public function initialize()
     {
         parent::initialize();
         $this->Auth->allow();
     }
 
+    /**
+     * Displays the results of phpinfo()
+     *
+     * @return void
+     */
     public function phpinfo()
     {
         $this->viewBuilder()->layout('ajax');
     }
 
+    /**
+     * Clears the cache
+     *
+     * @return void
+     */
     public function clearCache()
     {
         $this->set(['result' => Cache::clear()]);

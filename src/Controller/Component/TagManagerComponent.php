@@ -2,12 +2,20 @@
 namespace DataCenter\Controller\Component;
 
 use Cake\Controller\Component;
+use Cake\Controller\Controller;
 use Cake\Datasource\ConnectionManager;
 use Cake\ORM\TableRegistry;
 use Cake\Utility\Inflector;
 
 class TagManagerComponent extends Component
 {
+
+    /**
+     * Returns an array of tags, each with values for name, id, and occurrences
+     *
+     * @param string $model Name of the model associated with tags
+     * @return array
+     */
     public function getCloud($model)
     {
         $connection = ConnectionManager::get('default');
@@ -30,6 +38,13 @@ class TagManagerComponent extends Component
         return $tagCloud;
     }
 
+    /**
+     * Returns a nested collection of tags for the selected (or default) model
+     *
+     * @param null|string $model
+     * @param null|int $id
+     * @return array
+     */
     public function getTags($model = null, $id = null)
     {
         $this->Tags = TableRegistry::get('Tags');
@@ -44,7 +59,13 @@ class TagManagerComponent extends Component
         return $tags;
     }
 
-    // Returns the top $limit most used tags associated with $model
+    /**
+     * Returns the top $limit most used tags associated with $model
+     *
+     * @param string $model Name of model associated with tags
+     * @param int $limit Number of results to return
+     * @return array
+     */
     public function getTop($model, $limit = 5)
     {
         $connection = ConnectionManager::get('default');
@@ -63,14 +84,18 @@ class TagManagerComponent extends Component
         return $tags;
     }
 
-    // prepare tag editor
+    /**
+     * Prepares the tag editor
+     *
+     * @param Controller $controller CakePHP controller
+     */
     public function prepareEditor($controller)
     {
         // Provide the full list of available tags to the tag editor in the view
         $controller->set('availableTags', $this->getTags());
 
-        // Check and see if these tags have a 'listed' field
-        // (Listed tags show up under 'available tags' in the tag editor, unlisted do not)
+        /* Check and see if these tags have a 'listed' field
+         * (Listed tags show up under 'available tags' in the tag editor, unlisted do not) */
         $Tag = $this->Tags->newEntity();
         if (isset($Tag->_schema['listed'])) {
             $unlistedTags = array();
