@@ -8,6 +8,12 @@ class TagHelper extends Helper
 {
     public $helpers = ['Html', 'Js'];
 
+    /**
+     * Returns an array of available tags, formatted for JSON output
+     *
+     * @param array $availableTags Array of available tags
+     * @return array
+     */
     private function availableTagsForJs($availableTags)
     {
         $arrayForJson = [];
@@ -19,8 +25,16 @@ class TagHelper extends Helper
                 'children' => $this->availableTagsForJs($tag->children)
             ];
         }
+
         return $arrayForJson;
     }
+
+    /**
+     * Returns an array of selected tags, formatted for JSON output
+     *
+     * @param array $selectedTags Array of selected tags
+     * @return array
+     */
     private function selectedTagsForJs($selectedTags)
     {
         $arrayForJson = [];
@@ -32,9 +46,11 @@ class TagHelper extends Helper
         }
         return $arrayForJson;
     }
+
     /**
-     * If necessary, convert selected_tags from an array of IDs to a full array of tag info
-     * @param array $selectedTags
+     * Converts $selectedTags from an array of IDs to a full array of tag info
+     *
+     * @param array $selectedTags Array of selected tags
      * @return array
      */
     private function formatSelectedTags($selectedTags)
@@ -42,9 +58,11 @@ class TagHelper extends Helper
         if (empty($selectedTags)) {
             return [];
         }
+
         if (is_array($selectedTags[0])) {
             return $selectedTags;
         }
+
         $this->Tags = TableRegistry::get('Tags');
         $retval = [];
 
@@ -58,6 +76,15 @@ class TagHelper extends Helper
 
         return $retval;
     }
+
+    /**
+     * Echoes a <script> tag that initializes the TagHelper
+     *
+     * @param array $availableTags Array of available tags
+     * @param array $selectedTags Array of selected tags
+     * @param array $options Array of options
+     * @return void
+     */
     public function setup($availableTags, $selectedTags = [], $options = [])
     {
         $params = [
