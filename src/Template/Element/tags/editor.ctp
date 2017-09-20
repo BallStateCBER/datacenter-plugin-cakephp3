@@ -12,7 +12,7 @@ if (! isset($selectedTags)) {
 if (!isset($hideLabel)) {
     $hideLabel = false;
 }
-echo $this->Html->script('/data_center/js/tag_manager.js');
+echo $this->Html->script('/data_center/js/tag_manager.js', ['block' => true]);
 echo $this->Html->css('/data_center/css/tag_editor.css');
 ?>
 
