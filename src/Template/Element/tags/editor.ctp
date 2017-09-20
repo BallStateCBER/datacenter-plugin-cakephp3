@@ -26,13 +26,11 @@ echo $this->Html->css('/data_center/css/tag_editor.css');
         Click
         <a href="#" title="Selectable tags will appear in blue" id="example_selectable_tag">selectable tags</a>
         to select them.
-        <?php
-            $this->Js->buffer("
-                $('#example_selectable_tag').tooltip().click(function(event) {
-                    event.preventDefault();
-                });
-            ");
-        ?>
+        <?php $this->eppend('buffered'); ?>
+            $('#example_selectable_tag').tooltip().click(function(event) {
+                event.preventDefault();
+            });
+        <?php $this->end(); ?>
     </div>
 
     <div id="selected_tags_container" style="display: none;">
@@ -105,6 +103,7 @@ echo $this->Html->css('/data_center/css/tag_editor.css');
     }
     echo $this->Tag->setup($availableTags, $selectedTags, $options);
     if ($allow_custom) {
-        $this->Js->buffer("TagManager.setupCustomTagInput();");
+        $this->append('buffered');
+        echo 'TagManager.setupCustomTagInput();';
+        $this->end();
     }
-?>
