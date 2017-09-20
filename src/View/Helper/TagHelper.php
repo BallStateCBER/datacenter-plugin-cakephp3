@@ -6,8 +6,6 @@ use Cake\View\Helper;
 
 class TagHelper extends Helper
 {
-    public $helpers = ['Html', 'Js'];
-
     /**
      * Returns an array of available tags, formatted for JSON output
      *
