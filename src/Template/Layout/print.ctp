@@ -33,7 +33,7 @@
         More useful tag suggestions at http://html5boilerplate.com/docs/head-Tips/
         Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons
     */ ?>
-    <link rel="shortcut icon" href="/data_center/img/favicon.ico" />
+    <link rel="shortcut icon" href="/favicon.ico" />
     <link href="//fonts.googleapis.com/css?family=Asap:400,400italic,700" rel="stylesheet" type="text/css">
     <?= $this->Html->css('style') ?>
     <?= $this->fetch('css') ?>
