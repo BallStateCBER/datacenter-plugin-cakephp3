@@ -39,7 +39,7 @@
     <link rel="manifest" href="/manifest.json" />
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
     <meta name="theme-color" content="#cc0022" />
-    <link href="//fonts.googleapis.com/css?family=Asap:400,400italic,700" rel="stylesheet" type="text/css">
+    <link href="//fonts.googleapis.com/css?family=Asap:400,400italic,700" rel="stylesheet" type="text/css" />
     <?= $this->Html->css('style') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('scriptTop') ?>
