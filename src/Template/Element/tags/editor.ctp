@@ -26,7 +26,7 @@ echo $this->Html->css('/data_center/css/tag_editor.css');
         Click
         <a href="#" title="Selectable tags will appear in blue" id="example_selectable_tag">selectable tags</a>
         to select them.
-        <?php $this->eppend('buffered'); ?>
+        <?php $this->append('buffered'); ?>
             $('#example_selectable_tag').tooltip().click(function(event) {
                 event.preventDefault();
             });
