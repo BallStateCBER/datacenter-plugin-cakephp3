@@ -40,12 +40,12 @@ class Installer
 
         $rootDir = self::getRootDir(__DIR__);
 
-        static::createAppConfig($rootDir, $io);
+        static::createAppConfig($io);
         if (file_exists($rootDir . '/config/app.default.php')) {
             unlink($rootDir . '/config/app.default.php');
         }
-        static::createEnvFiles($rootDir, $io);
-        static::createWritableDirectories($rootDir, $io);
+        static::createEnvFiles($io);
+        static::createWritableDirectories($io);
 
         // ask if the permissions should be changed
         if ($io->isInteractive()) {
@@ -63,10 +63,10 @@ class Installer
             );
 
             if (in_array($setFolderPermissions, ['Y', 'y'])) {
-                static::setFolderPermissions($rootDir, $io);
+                static::setFolderPermissions($io);
             }
         } else {
-            static::setFolderPermissions($rootDir, $io);
+            static::setFolderPermissions($io);
         }
 
         if (class_exists('\Cake\Codeception\Console\Installer')) {
@@ -116,14 +116,14 @@ class Installer
     /**
      * Create the config/app.php file if it does not exist.
      *
-     * @param string $dir The application's root directory.
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
      */
-    public static function createAppConfig($dir, $io)
+    public static function createAppConfig($io)
     {
-        $appConfig = $dir . '/config/app.php';
-        $defaultConfig = $dir . '/config/app.default.php';
+        $rootDir = self::getRootDir(__DIR__);
+        $appConfig = $rootDir . '/config/app.php';
+        $defaultConfig = $rootDir . '/config/app.default.php';
         if (!file_exists($appConfig)) {
             copy($defaultConfig, $appConfig);
             $io->write('Created `config/app.php` file');
@@ -133,12 +133,12 @@ class Installer
     /**
      * Create the `logs` and `tmp` directories.
      *
-     * @param string $dir The application's root directory.
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
      */
-    public static function createWritableDirectories($dir, $io)
+    public static function createWritableDirectories($io)
     {
+        $rootDir = self::getRootDir(__DIR__);
         $paths = [
             'logs',
             'tmp',
@@ -151,7 +151,7 @@ class Installer
         ];
 
         foreach ($paths as $path) {
-            $path = $dir . '/' . $path;
+            $path = $rootDir . '/' . $path;
             if (!file_exists($path)) {
                 mkdir($path);
                 $io->write('Created `' . $path . '` directory');
@@ -164,12 +164,13 @@ class Installer
      *
      * This is not the most secure default, but it gets people up and running quickly.
      *
-     * @param string $dir The application's root directory.
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
      */
-    public static function setFolderPermissions($dir, $io)
+    public static function setFolderPermissions($io)
     {
+        $rootDir = self::getRootDir(__DIR__);
+
         // Change the permissions on a path and output the results.
         $changePerms = function ($path, $perms, $io) {
             // Get permission bits from stat(2) result.
@@ -201,9 +202,9 @@ class Installer
         };
 
         $worldWritable = bindec('0000000111');
-        $walker($dir . '/tmp', $worldWritable, $io);
-        $changePerms($dir . '/tmp', $worldWritable, $io);
-        $changePerms($dir . '/logs', $worldWritable, $io);
+        $walker($rootDir . '/tmp', $worldWritable, $io);
+        $changePerms($rootDir . '/tmp', $worldWritable, $io);
+        $changePerms($rootDir . '/logs', $worldWritable, $io);
     }
 
     /**
@@ -282,12 +283,12 @@ class Installer
     /**
      * Creates the files .env, .env.production, and .env.dev
      *
-     * @param string $dir The application's root directory
      * @param \Composer\IO\IOInterface $io IO interface to write to console
      * @return void
      */
-    public static function createEnvFiles($dir, $io)
+    public static function createEnvFiles($io)
     {
+        $rootDir = self::getRootDir(__DIR__);
         $securitySalt = hash('sha256', Security::randomBytes(64));
         $cookieKey = hash('sha256', Security::randomBytes(64));
         $variables = [
@@ -304,29 +305,29 @@ class Installer
             $variables['FULL_BASE_URL'] = $fullBaseUrl;
         }
 
-        if (!file_exists($dir . '/config/.env.dev')) {
-            static::createDevEnvFile($dir, $variables, $io);
+        if (!file_exists($rootDir . '/config/.env.dev')) {
+            static::createDevEnvFile($variables, $io);
         }
 
-        if (!file_exists($dir . '/config/.env.production')) {
-            static::createProductionEnvFile($dir, $variables, $io);
+        if (!file_exists($rootDir . '/config/.env.production')) {
+            static::createProductionEnvFile($variables, $io);
         }
 
-        if (!file_exists($dir . '/config/.env')) {
-            static::setCurrentEnv($dir, $io, '.env.dev');
+        if (!file_exists($rootDir . '/config/.env')) {
+            static::setCurrentEnv($io, '.env.dev');
         }
     }
 
     /**
      * Creates .env.dev
      *
-     * @param string $rootDir Full path to root directory
      * @param array $variables Variables in .env file to update
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
      */
-    public static function createDevEnvFile($rootDir, $variables, $io)
+    public static function createDevEnvFile($variables, $io)
     {
+        $rootDir = self::getRootDir(__DIR__);
         $defaultFile = $rootDir . '/config/.env.default';
         $newFile = $rootDir . '/config/.env.dev';
 
@@ -346,13 +347,13 @@ class Installer
     /**
      * Creates .env.production
      *
-     * @param string $rootDir Full path to root directory
      * @param array $variables Variables in .env file to update
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
      */
-    public static function createProductionEnvFile($rootDir, $variables, $io)
+    public static function createProductionEnvFile($variables, $io)
     {
+        $rootDir = self::getRootDir(__DIR__);
         $defaultFile = $rootDir . '/config/.env.default';
         $newFile = $rootDir . '/config/.env.production';
 
@@ -373,13 +374,13 @@ class Installer
     /**
      * Copies the specified .env.foo file to .env
      *
-     * @param string $rootDir Path to root directory
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @param string $filename Filename to copy to .env
      * @return void
      */
-    public static function setCurrentEnv($rootDir, $io, $filename)
+    public static function setCurrentEnv($io, $filename)
     {
+        $rootDir = self::getRootDir(__DIR__);
         $fileToCopy = $rootDir . '/config/' . $filename;
         $newFile = $rootDir . '/config/.env';
 
