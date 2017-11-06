@@ -18,6 +18,7 @@ use Cake\Utility\Security;
 use Composer\DependencyResolver\Operation\InstallOperation;
 use Composer\DependencyResolver\Operation\UpdateOperation;
 use Composer\Installer\PackageEvent;
+use Composer\Script\Event;
 use Exception;
 
 /**
@@ -210,10 +211,10 @@ class Installer
     /**
      * Copies favicon and other files from Data Center plugin into /webroot
      *
-     * @param PackageEvent $event The composer event object.
+     * @param PackageEvent|Event $event The composer event object.
      * @return void
      */
-    public static function copyDataCenterFiles(PackageEvent $event)
+    public static function copyDataCenterFiles($event)
     {
         $io = $event->getIO();
         $rootDir = self::getRootDir(__DIR__);
@@ -248,10 +249,10 @@ class Installer
     /**
      * Copies Bootstrap files into /webroot subdirectories
      *
-     * @param PackageEvent $event The composer event object.
+     * @param PackageEvent|Event $event The composer event object.
      * @return void
      */
-    public static function copyTwitterBootstrapFiles(PackageEvent $event)
+    public static function copyTwitterBootstrapFiles($event)
     {
         $io = $event->getIO();
         $rootDir = self::getRootDir(__DIR__);
@@ -478,5 +479,17 @@ class Installer
         } while ($dir !== $lastDir);
 
         throw new Exception('Cannot find the root of the application');
+    }
+
+    /**
+     * Runs all methods that copy files from /vendor to /webroot
+     *
+     * @param Event $event
+     * @return void
+     */
+    public static function copyVendorFiles($event)
+    {
+        static::copyTwitterBootstrapFiles($event);
+        static::copyDataCenterFiles($event);
     }
 }
