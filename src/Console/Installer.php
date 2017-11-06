@@ -74,8 +74,7 @@ class Installer
             \Cake\Codeception\Console\Installer::customizeCodeceptionBinary($event);
         }
 
-        static::copyTwitterBootstrapFiles($event);
-        static::copyDataCenterFiles($event);
+        static::copyVendorFiles($event);
     }
 
     /**
@@ -484,7 +483,7 @@ class Installer
     /**
      * Runs all methods that copy files from /vendor to /webroot
      *
-     * @param Event $event
+     * @param PackageEvent|Event $event
      * @return void
      */
     public static function copyVendorFiles($event)
