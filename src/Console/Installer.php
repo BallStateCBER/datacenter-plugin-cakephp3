@@ -38,7 +38,7 @@ class Installer
     {
         $io = $event->getIO();
 
-        $rootDir = dirname(dirname(__DIR__));
+        $rootDir = self::getRootDir(__DIR__);
 
         static::createAppConfig($rootDir, $io);
         if (file_exists($rootDir . '/config/app.default.php')) {
@@ -215,7 +215,7 @@ class Installer
     public static function copyDataCenterFiles(PackageEvent $event)
     {
         $io = $event->getIO();
-        $dir = dirname(dirname(__DIR__));
+        $rootDir = self::getRootDir(__DIR__);
 
         // Files to be copied from => to
         $files = [
@@ -232,8 +232,8 @@ class Installer
         ];
 
         foreach ($files as $file) {
-            $source = $dir . 'vendor/ballstatecber/datacenter-plugin-cakephp3/webroot/' . $file;
-            $destination = $dir . '/webroot/' . $file;
+            $source = $rootDir . 'vendor/ballstatecber/datacenter-plugin-cakephp3/webroot/' . $file;
+            $destination = $rootDir . 'webroot/' . $file;
             if (file_exists($source)) {
                 if (copy($source, $destination)) {
                     $io->write("Copied `$file` into webroot");
@@ -253,14 +253,14 @@ class Installer
     public static function copyTwitterBootstrapFiles(PackageEvent $event)
     {
         $io = $event->getIO();
-        $dir = dirname(dirname(__DIR__));
+        $rootDir = self::getRootDir(__DIR__);
 
         // Files to be copied from => to
         $copyJobs = [
-            $dir . '/vendor/twbs/bootstrap/dist/js/bootstrap.min.js' => $dir . '/webroot/js/bootstrap.min.js'
+            $rootDir . '/vendor/twbs/bootstrap/dist/js/bootstrap.min.js' => $rootDir . '/webroot/js/bootstrap.min.js'
         ];
-        $fontSourceDir = $dir . '/vendor/twbs/bootstrap/dist/fonts';
-        $fontDestinationDir = $dir . '/webroot/fonts';
+        $fontSourceDir = $rootDir . '/vendor/twbs/bootstrap/dist/fonts';
+        $fontDestinationDir = $rootDir . '/webroot/fonts';
         $fontFiles = array_diff(scandir($fontSourceDir), ['.', '..']);
         foreach ($fontFiles as $fontFile) {
             $copyJobs[$fontSourceDir . '/' . $fontFile] = $fontDestinationDir . '/' . $fontFile;
@@ -457,5 +457,25 @@ class Installer
             // Note write failure
             $io->write("Unable to update $updatesString");
         }
+    }
+
+    /**
+     * Finds the root directory of this application
+     *
+     * @param string $dir Path to a directory under root
+     * @return string
+     * @throws Exception
+     */
+    public static function getRootDir($dir)
+    {
+        do {
+            $lastDir = $dir;
+            $dir = dirname($dir);
+            if (is_dir($dir . '/vendor/cakephp/cakephp')) {
+                return $dir;
+            }
+        } while ($dir !== $lastDir);
+
+        throw new Exception('Cannot find the root of the application');
     }
 }
