@@ -483,7 +483,7 @@ class Installer
     /**
      * Runs all methods that copy files from /vendor to /webroot
      *
-     * @param PackageEvent|Event $event
+     * @param PackageEvent|Event $event Composer event object
      * @return void
      */
     public static function copyVendorFiles($event)
