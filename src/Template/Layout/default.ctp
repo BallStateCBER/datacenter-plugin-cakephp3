@@ -5,7 +5,7 @@
 <html lang="en">
 <head>
     <?= $this->Html->charset() ?>
-    <link rel="dns-prefetch" href="//ajax.googleapis.com" />
+    <link rel="dns-prefetch" href="https://ajax.googleapis.com" />
     <title>
         <?php
             $title = Configure::read('data_center_subsite_title');
@@ -39,7 +39,7 @@
     <link rel="manifest" href="/manifest.json" />
     <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
     <meta name="theme-color" content="#cc0022" />
-    <link href="//fonts.googleapis.com/css?family=Asap:400,400italic,700" rel="stylesheet" type="text/css" />
+    <link href="https://fonts.googleapis.com/css?family=Asap:400,400italic,700" rel="stylesheet" type="text/css" />
     <?= $this->Html->css('style') ?>
     <?= $this->fetch('css') ?>
     <?= $this->fetch('scriptTop') ?>
@@ -49,7 +49,7 @@
     <![endif]-->
 
     <!-- Grab Google CDN's jQuery, with a protocol relative URL; fall back to local if offline -->
-    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script>window.jQuery || document.write('<script src="/data_center/js/jquery-1.9.1.min.js"><\/script>')</script>
     <script src="/data_center/js/flash.js"></script>
 </head>
