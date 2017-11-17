@@ -28,11 +28,22 @@ echo $this->element('DataCenter.jquery_ui');
         <a href="#" title="Selectable tags will appear in blue" id="example_selectable_tag">selectable tags</a>
         to select them.
         <?php $this->append('buffered'); ?>
+    <div class="input" id="tag_editing">
+        <div id="available_tags_container" class="form-control">
+            <div id="available_tags"></div>
+            <div id="popular_tags"></div>
+        </div>
+        <div class="text-muted">
+            Click <img src="/data_center/img/icons/menu-collapsed.png" /> to expand groups.
+            Click
+            <a href="#" title="Selectable tags will appear in blue" id="example_selectable_tag">selectable tags</a>
+            to select them.
+            <?php $this->append('buffered'); ?>
             $('#example_selectable_tag').tooltip().click(function(event) {
                 event.preventDefault();
             });
-        <?php $this->end(); ?>
-    </div>
+            <?php $this->end(); ?>
+        </div>
 
     <div id="selected_tags_container" style="display: none;">
         <span class="label">
