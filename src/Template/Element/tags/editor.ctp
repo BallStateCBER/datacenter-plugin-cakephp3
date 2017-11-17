@@ -14,6 +14,7 @@ if (!isset($hideLabel)) {
 }
 echo $this->Html->script('/data_center/js/tag_manager.js', ['block' => true]);
 echo $this->Html->css('/data_center/css/tag_editor.css');
+echo $this->element('DataCenter.jquery_ui');
 ?>
 
     <div class="input" id="tag_editing">
