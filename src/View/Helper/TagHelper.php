@@ -65,10 +65,10 @@ class TagHelper extends Helper
         $this->Tags = TableRegistry::get('Tags');
         $retval = [];
 
-        foreach ($selectedTags as $tag_id) {
+        foreach ($selectedTags as $tag) {
             $result = $this->Tags->find()
-                ->select(['id', 'name', 'parent_id', 'listed', 'selectable'])
-                ->where(['id' => $tag_id])
+                ->select()
+                ->where(['id' => $tag->id])
                 ->first();
             $retval[] = $result;
         }
