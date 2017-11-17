@@ -18,7 +18,7 @@ echo $this->element('DataCenter.jquery_ui');
 ?>
 
 <div class="input" id="tag_editing">
-    <div id="available_tags_container" class="form-control">
+    <div id="available_tags_container">
         <div id="available_tags"></div>
         <div id="popular_tags"></div>
     </div>
