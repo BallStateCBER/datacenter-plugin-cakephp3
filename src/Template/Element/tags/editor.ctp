@@ -23,7 +23,7 @@ echo $this->element('DataCenter.jquery_ui');
         <div id="popular_tags"></div>
     </div>
     <div class="text-muted">
-        Click <img src="/img/icons/menu-collapsed.png" /> to expand groups.
+        Click <img src="/data_center/img/icons/menu-collapsed.png" /> to expand groups.
         Click
         <a href="#" title="Selectable tags will appear in blue" id="example_selectable_tag">selectable tags</a>
         to select them.
@@ -48,7 +48,7 @@ echo $this->element('DataCenter.jquery_ui');
         <label for="custom_tag_input">
             Additional Tags
             <span id="tag_autosuggest_loading" style="display: none;">
-                <img src="/img/loading_small.gif" alt="Working..." title="Working..." style="vertical-align:top;" />
+                <img src="/data_center/img/loading_small.gif" alt="Working..." title="Working..." style="vertical-align:top;" />
             </span>
         </label>
         <?php
