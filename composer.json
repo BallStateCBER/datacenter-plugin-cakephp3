@@ -7,8 +7,7 @@
         "cakephp/cakephp": "^3.5",
         "twbs/bootstrap": "~3.0",
         "cakephp/cakephp-codesniffer": "*",
-        "composer/composer": "^1.5.2",
-        "friendsofcake/fixturize": "dev-master"
+        "composer/composer": "^1.5.2"
     },
     "require-dev": {
         "phpunit/phpunit": "*"
