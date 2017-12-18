@@ -16,7 +16,7 @@
                 <?php if ($this->fetch('footer_about')): ?>
                     <?= $this->fetch('footer_about') ?>
                 <?php else: ?>
-                    <h3>About Ball State CBER Data Center</h3>
+                    <h2>About Ball State CBER Data Center</h2>
                     <p>
                         Ball State CBER Data Center is one-stop shop for economic data including demographics, education, health, and social
                         capital. Our easy-to-use, visual web tools offer data collection and analysis for grant writers, economic developers, policy
@@ -33,7 +33,7 @@
                 </p>
             </section>
             <section>
-                <h3>Center for Business and Economic Research</h3>
+                <h2>Center for Business and Economic Research</h2>
                 <address>
                     Ball State University &bull; Whitinger Business Building, room 149<br />
                     2000 W. University Ave.<br />
