@@ -3,6 +3,9 @@
         <div id="cberlogo_copyright">
             <a href="http://www.bsu.edu/cber">
                 <img src="/data_center/img/BallStateCBER-red.png" />
+                <span class="sr-only">
+                    Ball State University: Center for Business and Economic Research
+                </span>
             </a>
             <p>
                 &copy; Center for Business and Economic Research, Ball State University
@@ -22,7 +25,7 @@
                     <p>
                         Ball State CBER Data Center (<a href="http://cberdata.org">cberdata.org</a>) is a product of the Center for Business and Economic Research at Ball State
                         University. CBER's mission is to conduct relevant and timely public policy research on a wide range of economic issues
-                        affecting the state and nation. <a href="http://www.bsu.edu/cber">Learn more</a>.
+                        affecting the state and nation. <a href="http://www.bsu.edu/cber">Learn more about CBER.</a>
                     </p>
                 <?php endif; ?>
                 <p>
