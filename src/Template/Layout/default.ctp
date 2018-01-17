@@ -1,5 +1,5 @@
 <?php
-use Cake\Core\Configure;
+    use Cake\Core\Configure;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -8,11 +8,11 @@ use Cake\Core\Configure;
     <link rel="dns-prefetch" href="https://ajax.googleapis.com" />
     <title>
         <?php
-        $title = Configure::read('data_center_subsite_title');
-        if (isset($titleForLayout) && $titleForLayout) {
-            $title = $titleForLayout . ' - '.$title;
-        }
-        echo $title;
+            $title = Configure::read('data_center_subsite_title');
+            if (isset($titleForLayout) && $titleForLayout) {
+                $title = $titleForLayout . ' - '.$title;
+            }
+            echo $title;
         ?>
     </title>
     <meta name="title" content="<?= $title; ?>" />
@@ -58,77 +58,79 @@ use Cake\Core\Configure;
 </head>
 <body class="default-layout">
 
-<?= $this->fetch('top-html') ?>
+    <?= $this->fetch('top-html') ?>
 
-<header id="header_top">
-    <div class="max_width">
-        <h1>
-            <a href="http://bsu.edu/cber">
-                Center for Business and Economic Research
+    <header id="header_top">
+        <div class="max_width">
+            <h1>
+                <a href="http://bsu.edu/cber">
+                    Center for Business and Economic Research
+                </a>
+                -
+                <a href="http://bsu.edu">
+                    Ball State University
+                </a>
+            </h1>
+            <br class="clear" />
+            <a href="http://cberdata.org/" id="data_center_nameplate">
+                CBER Data Center
             </a>
-            -
-            <a href="http://bsu.edu">
-                Ball State University
-            </a>
-        </h1>
-        <br class="clear" />
-        <a href="http://cberdata.org/" id="data_center_nameplate">
-            CBER Data Center
-        </a>
-        <?= $this->element('DataCenter.nav') ?>
-        <br class="clear" />
-    </div>
-</header>
-
-<?php if ($this->fetch('subsite_title')): ?>
-    <?= $this->fetch('subsite_title') ?>
-<?php else: ?>
-    <h1 id="subsite_title" class="max_width_padded">
-        <?= Configure::read('data_center_subsite_title') ?>
-    </h1>
-<?php endif; ?>
-
-<div id="content_wrapper" class="max_width">
-    <?php if ($this->fetch('sidebar')): ?>
-        <div id="two_col_wrapper">
-            <?php /*
-                    These two col_stretcher divs ensure that both the sidebar and content
-                    area have the appearance of having the same height.
-                */ ?>
-            <div id="menu_col_stretcher" class="col_stretcher"></div>
-            <div id="content_col_stretcher" class="col_stretcher"></div>
-            <div id="menu_column" class="col">
-                <?= $this->fetch('sidebar') ?>
-            </div>
-            <main id="content_column" class="col">
-                <?= $this->fetch('content') ?>
-                <br class="clear" />
-            </main>
+            <?= $this->element('DataCenter.nav') ?>
+            <br class="clear" />
         </div>
+    </header>
+
+    <?php if ($this->fetch('subsite_title')): ?>
+        <?= $this->fetch('subsite_title') ?>
     <?php else: ?>
-        <main>
-            <?= $this->fetch('content') ?>
-        </main>
-        <br class="clear" />
+        <h1 id="subsite_title" class="max_width_padded">
+            <?= Configure::read('data_center_subsite_title') ?>
+        </h1>
     <?php endif; ?>
-</div>
 
-<?= $this->element('DataCenter.footer') ?>
-
-<noscript id="noscript" class="alert alert-warning">
-    <div>
-        JavaScript is currently disabled in your browser. For full functionality of this website, JavaScript must
-        be enabled. If you need assistance,
-        <a href="http://www.enable-javascript.com/" target="_blank">Enable-JavaScript.com</a> provides instructions.
+    <div id="content_wrapper" class="max_width">
+        <?php if ($this->fetch('sidebar')): ?>
+            <div id="two_col_wrapper">
+                <?php
+                    /*
+                     * These two col_stretcher divs ensure that both the sidebar and content area have the appearance
+                     * of having the same height.
+                     */
+                ?>
+                <div id="menu_col_stretcher" class="col_stretcher"></div>
+                <div id="content_col_stretcher" class="col_stretcher"></div>
+                <div id="menu_column" class="col">
+                    <?= $this->fetch('sidebar') ?>
+                </div>
+                <main id="content_column" class="col">
+                    <?= $this->fetch('content') ?>
+                    <br class="clear" />
+                </main>
+            </div>
+        <?php else: ?>
+            <main>
+                <?= $this->fetch('content') ?>
+            </main>
+            <br class="clear" />
+        <?php endif; ?>
     </div>
-</noscript>
 
-<?= $this->element('DataCenter.analytics') ?>
-<?= $this->fetch('scriptBottom') ?>
-<script>
-    $(document).ready(function () {
-        <?= $this->fetch('buffered') ?>
-    });
-</script>
+    <?= $this->element('DataCenter.footer') ?>
+
+    <noscript id="noscript" class="alert alert-warning">
+        <div>
+            JavaScript is currently disabled in your browser. For full functionality of this website, JavaScript must
+            be enabled. If you need assistance,
+            <a href="http://www.enable-javascript.com/" target="_blank">Enable-JavaScript.com</a> provides instructions.
+        </div>
+    </noscript>
+
+    <?= $this->element('DataCenter.analytics') ?>
+    <?= $this->fetch('scriptBottom') ?>
+    <script>
+        $(document).ready(function () {
+            <?= $this->fetch('buffered') ?>
+        });
+    </script>
 </body>
 </html>
