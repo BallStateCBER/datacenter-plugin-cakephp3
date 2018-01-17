@@ -1,16 +1,25 @@
 <?php
-use Cake\Core\Configure;
+    /** @var \Cake\View\View $this */
+    use Cake\Core\Configure;
 
-$googleAnalyticsId = Configure::read('google_analytics_id');
-$debug = Configure::read('debug');
-if ($googleAnalyticsId && !$debug): ?>
-	<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-		ga('create', '<?= $googleAnalyticsId ?>', 'cberdata.org');
-		ga('send', 'pageview');
-	</script>
+    $googleAnalyticsId = Configure::read('google_analytics_id');
+    $debug = Configure::read('debug');
+    $gaConfig = [
+        'page_location' => $this->request->getUri()->__toString(),
+        'page_path' => $this->request->getUri()->getPath()
+    ];
+    if (isset($titleForLayout) && $titleForLayout) {
+        $gaConfig['page_title'] = $titleForLayout;
+    }
+?>
+<?php if ($googleAnalyticsId && !$debug): ?>
+    <!-- Global Site Tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=<?= $googleAnalyticsId ?>"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', '<?= $googleAnalyticsId ?>', <?= json_encode($gaConfig) ?>);
+        gtag('event', 'page_view');
+    </script>
 <?php endif; ?>
