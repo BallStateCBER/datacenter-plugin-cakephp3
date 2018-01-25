@@ -124,7 +124,7 @@ class Installer
         $rootDir = self::getRootDir(__DIR__);
         $appConfig = $rootDir . '/config/app.php';
         $defaultConfig = $rootDir . '/config/app.default.php';
-        if (!file_exists($appConfig)) {
+        if (!file_exists($appConfig) && file_exists($defaultConfig)) {
             copy($defaultConfig, $appConfig);
             $io->write('Created `config/app.php` file');
         }
