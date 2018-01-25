@@ -118,6 +118,7 @@ class Installer
      *
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
+     * @throws Exception
      */
     public static function createAppConfig($io)
     {
@@ -135,6 +136,7 @@ class Installer
      *
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
+     * @throws Exception
      */
     public static function createWritableDirectories($io)
     {
@@ -166,6 +168,7 @@ class Installer
      *
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
+     * @throws Exception
      */
     public static function setFolderPermissions($io)
     {
@@ -212,6 +215,7 @@ class Installer
      *
      * @param PackageEvent|Event $event The composer event object.
      * @return void
+     * @throws Exception
      */
     public static function copyDataCenterFiles($event)
     {
@@ -250,6 +254,7 @@ class Installer
      *
      * @param PackageEvent|Event $event The composer event object.
      * @return void
+     * @throws Exception
      */
     public static function copyTwitterBootstrapFiles($event)
     {
@@ -285,6 +290,7 @@ class Installer
      *
      * @param \Composer\IO\IOInterface $io IO interface to write to console
      * @return void
+     * @throws Exception
      */
     public static function createEnvFiles($io)
     {
@@ -324,6 +330,7 @@ class Installer
      * @param array $variables Variables in .env file to update
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
+     * @throws Exception
      */
     public static function createDevEnvFile($variables, $io)
     {
@@ -350,6 +357,7 @@ class Installer
      * @param array $variables Variables in .env file to update
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
+     * @throws Exception
      */
     public static function createProductionEnvFile($variables, $io)
     {
@@ -377,6 +385,7 @@ class Installer
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @param string $filename Filename to copy to .env
      * @return void
+     * @throws Exception
      */
     public static function setCurrentEnv($io, $filename)
     {
@@ -485,6 +494,7 @@ class Installer
      *
      * @param PackageEvent|Event $event Composer event object
      * @return void
+     * @throws Exception
      */
     public static function copyVendorFiles($event)
     {
