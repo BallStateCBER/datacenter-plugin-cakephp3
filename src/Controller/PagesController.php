@@ -29,16 +29,6 @@ class PagesController extends AppController
     }
 
     /**
-     * Displays the results of phpinfo()
-     *
-     * @return void
-     */
-    public function phpinfo()
-    {
-        $this->viewBuilder()->layout('ajax');
-    }
-
-    /**
      * Clears the cache
      *
      * @return void
