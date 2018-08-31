@@ -4,17 +4,17 @@
   "description": "CBER Data Center plugin (CakePHP 3)",
   "main": "",
   "dependencies": {
-    "commander": "^2.11.0",
-    "dateformat": "^2.0.0",
+    "commander": "^2.17.1",
+    "dateformat": "^2.2.0",
     "gulp": "^3.9.1",
-    "gulp-jshint": "^2.0.4",
-    "gulp-notify": "^3.0.0",
-    "gulp-phpcs": "^2.0.0",
-    "gulp-phpunit": "^0.24.1",
+    "gulp-jshint": "^2.1.0",
+    "gulp-notify": "^3.2.0",
+    "gulp-phpcs": "^2.2.0",
+    "gulp-phpunit": "^0.26.0",
     "gulp-util": "^3.0.8",
-    "jshint": "^2.9.5",
+    "jshint": "^2.9.6",
     "jshint-stylish": "^2.2.1",
-    "lodash": "^4.17.2"
+    "lodash": "^4.17.10"
   },
   "devDependencies": {},
   "repository": {
