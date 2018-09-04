@@ -1,5 +1,5 @@
 <?php
-namespace App\Command;
+namespace DataCenter\Command;
 
 use Cake\Console\Arguments;
 use Cake\Console\Command;
@@ -10,7 +10,7 @@ use Exception;
 
 /**
  * Class CommonCommand
- * @package App\Command
+ * @package DataCenter\Command
  * @property ProgressHelper $progress
  * @property ConsoleIo $io
  */
