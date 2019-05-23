@@ -72,7 +72,7 @@
                 </a>
             </h1>
             <br class="clear" />
-            <a href="http://cberdata.org/" id="data_center_nameplate">
+            <a href="https://cberdata.org/" id="data_center_nameplate">
                 CBER Data Center
             </a>
             <?= $this->element('DataCenter.nav') ?>

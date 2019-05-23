@@ -23,13 +23,13 @@
                         makers, and the general public.
                     </p>
                     <p>
-                        Ball State CBER Data Center (<a href="http://cberdata.org">cberdata.org</a>) is a product of the Center for Business and Economic Research at Ball State
+                        Ball State CBER Data Center (<a href="https://cberdata.org">cberdata.org</a>) is a product of the Center for Business and Economic Research at Ball State
                         University. CBER's mission is to conduct relevant and timely public policy research on a wide range of economic issues
                         affecting the state and nation. <a href="http://www.bsu.edu/cber">Learn more about CBER.</a>
                     </p>
                 <?php endif; ?>
                 <p>
-                    <a href="http://cberdata.org/terms">Terms of Service</a>
+                    <a href="https://cberdata.org/terms">Terms of Service</a>
                 </p>
             </section>
             <section>
