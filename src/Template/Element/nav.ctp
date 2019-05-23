@@ -6,7 +6,7 @@
         ['Weekly<br />Commentary', 'http://commentaries.cberdata.org'],
         ['Community Readiness<br />Initiative', 'http://cri.cberdata.org'],
         ['County<br />Profiles', 'http://profiles.cberdata.org'],
-        ['Community<br />Asset Inventory', 'http://asset.cberdata.org'],
+        ['Community<br />Asset Inventory', 'https://cair.cberdata.org'],
         ['Brownfield Grant<br />Writers\' Toolbox', 'http://brownfield.cberdata.org'],
         ['Conexus Indiana<br />Report Card', 'http://conexus.cberdata.org']
     ];
