@@ -63,11 +63,11 @@
     <header id="header_top">
         <div class="max_width">
             <h1>
-                <a href="http://bsu.edu/cber">
+                <a href="https://bsu.edu/cber">
                     Center for Business and Economic Research
                 </a>
                 -
-                <a href="http://bsu.edu">
+                <a href="https://bsu.edu">
                     Ball State University
                 </a>
             </h1>
@@ -121,7 +121,7 @@
         <div>
             JavaScript is currently disabled in your browser. For full functionality of this website, JavaScript must
             be enabled. If you need assistance,
-            <a href="http://www.enable-javascript.com/" target="_blank">Enable-JavaScript.com</a> provides instructions.
+            <a href="https://www.enable-javascript.com/" target="_blank">Enable-JavaScript.com</a> provides instructions.
         </div>
     </noscript>
 
