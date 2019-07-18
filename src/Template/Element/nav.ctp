@@ -8,7 +8,7 @@
         ['County<br />Profiles', 'https://profiles.cberdata.org'],
         ['Community<br />Asset Inventory', 'https://cair.cberdata.org'],
         ['Brownfield Grant<br />Writers\' Toolbox', 'https://brownfield.cberdata.org'],
-        ['Conexus Indiana<br />Report Card', 'https://conexus.cberdata.org']
+        ['Manufacturing & Logistics<br />Report Card', 'https://mfgscorecard.cberdata.org/']
     ];
     $this_subsite_url = Configure::read('data_center_subsite_url');
 ?>
