@@ -1,11 +1,9 @@
 <?php
+declare(strict_types=1);
+
 namespace DataCenter\Controller;
 
 use Cake\Cache\Cache;
-use Cake\Core\Configure;
-use Cake\Network\Exception\NotFoundException;
-use Cake\View\Exception\MissingTemplateException;
-use DataCenter\Controller\AppController;
 
 /**
  * Static content controller
@@ -16,7 +14,6 @@ use DataCenter\Controller\AppController;
  */
 class PagesController extends AppController
 {
-
     /**
      * Initialize method
      *

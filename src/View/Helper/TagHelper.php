@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace DataCenter\View\Helper;
 
 use Cake\ORM\TableRegistry;
@@ -20,7 +22,7 @@ class TagHelper extends Helper
                 'id' => $tag->id,
                 'name' => $tag->name,
                 'selectable' => $tag->selectable,
-                'children' => $this->availableTagsForJs($tag->children)
+                'children' => $this->availableTagsForJs($tag->children),
             ];
         }
 
@@ -39,7 +41,7 @@ class TagHelper extends Helper
         foreach ($selectedTags as $tag) {
             $arrayForJson[] = [
                 'id' => $tag->id,
-                'name' => $tag->name
+                'name' => $tag->name,
             ];
         }
 
@@ -87,7 +89,7 @@ class TagHelper extends Helper
     public function setup($availableTags, $selectedTags = [], $options = [])
     {
         $params = [
-            'tags: ' . json_encode($this->availableTagsForJs($availableTags))
+            'tags: ' . json_encode($this->availableTagsForJs($availableTags)),
         ];
         if (!empty($selectedTags)) {
             $selectedTags = $this->formatSelectedTags($selectedTags);

@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 /**
  * CakePHP(tm) : Rapid Development Framework (https://cakephp.org)
  * Copyright (c) Cake Software Foundation, Inc. (https://cakefoundation.org)
@@ -15,8 +17,6 @@
 namespace DataCenter\Console;
 
 use Cake\Utility\Security;
-use Composer\DependencyResolver\Operation\InstallOperation;
-use Composer\DependencyResolver\Operation\UpdateOperation;
 use Composer\Installer\PackageEvent;
 use Composer\Script\Event;
 use Exception;
@@ -27,11 +27,10 @@ use Exception;
  */
 class Installer
 {
-
     /**
      * Does some routine installation tasks so people don't have to.
      *
-     * @param Event $event The composer event object.
+     * @param \Composer\Script\Event $event The composer event object.
      * @throws \Exception Exception raised by validator.
      * @return void
      */
@@ -80,7 +79,7 @@ class Installer
     /**
      * Handles various file-copying from /vendor to /webroot
      *
-     * @param PackageEvent $event The composer event object.
+     * @param \Composer\Installer\PackageEvent $event The composer event object.
      * @throws \Exception Exception raised by validator.
      * @return void
      */
@@ -98,12 +97,12 @@ class Installer
     /**
      * Returns the package name associated with $event
      *
-     * @param PackageEvent $event Package event
+     * @param \Composer\Installer\PackageEvent $event Package event
      * @return string
      */
     public static function getPackageName(PackageEvent $event)
     {
-        /** @var InstallOperation|UpdateOperation $operation */
+        /** @var \Composer\DependencyResolver\Operation\InstallOperation|\DataCenter\Console\UpdateOperation $operation */
         $operation = $event->getOperation();
 
         $package = method_exists($operation, 'getPackage')
@@ -118,7 +117,7 @@ class Installer
      *
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
-     * @throws Exception
+     * @throws \Exception
      */
     public static function createAppConfig($io)
     {
@@ -136,7 +135,7 @@ class Installer
      *
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
-     * @throws Exception
+     * @throws \Exception
      */
     public static function createWritableDirectories($io)
     {
@@ -149,7 +148,7 @@ class Installer
             'tmp/cache/persistent',
             'tmp/cache/views',
             'tmp/sessions',
-            'tmp/tests'
+            'tmp/tests',
         ];
 
         foreach ($paths as $path) {
@@ -168,7 +167,7 @@ class Installer
      *
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
-     * @throws Exception
+     * @throws \Exception
      */
     public static function setFolderPermissions($io)
     {
@@ -213,9 +212,9 @@ class Installer
     /**
      * Copies favicon and other files from Data Center plugin into /webroot
      *
-     * @param PackageEvent|Event $event The composer event object.
+     * @param \Composer\Installer\PackageEvent|\Composer\Script\Event $event The composer event object.
      * @return void
-     * @throws Exception
+     * @throws \Exception
      */
     public static function copyDataCenterFiles($event)
     {
@@ -233,7 +232,7 @@ class Installer
             'favicon-32x32.png',
             'manifest.json',
             'mstile-150x150.png',
-            'safari-pinned-tab.svg'
+            'safari-pinned-tab.svg',
         ];
 
         foreach ($files as $file) {
@@ -252,9 +251,9 @@ class Installer
     /**
      * Copies Bootstrap files into /webroot subdirectories
      *
-     * @param PackageEvent|Event $event The composer event object.
+     * @param \Composer\Installer\PackageEvent|\Composer\Script\Event $event The composer event object.
      * @return void
-     * @throws Exception
+     * @throws \Exception
      */
     public static function copyTwitterBootstrapFiles($event)
     {
@@ -263,7 +262,7 @@ class Installer
 
         // Files to be copied from => to
         $copyJobs = [
-            $rootDir . '/vendor/twbs/bootstrap/dist/js/bootstrap.min.js' => $rootDir . '/webroot/js/bootstrap.min.js'
+            $rootDir . '/vendor/twbs/bootstrap/dist/js/bootstrap.min.js' => $rootDir . '/webroot/js/bootstrap.min.js',
         ];
         $fontSourceDir = $rootDir . '/vendor/twbs/bootstrap/dist/fonts';
         $fontDestinationDir = $rootDir . '/webroot/fonts';
@@ -290,7 +289,7 @@ class Installer
      *
      * @param \Composer\IO\IOInterface $io IO interface to write to console
      * @return void
-     * @throws Exception
+     * @throws \Exception
      */
     public static function createEnvFiles($io)
     {
@@ -299,7 +298,7 @@ class Installer
         $cookieKey = hash('sha256', Security::randomBytes(64));
         $variables = [
             'SECURITY_SALT' => $securitySalt,
-            'COOKIE_ENCRYPTION_KEY' => $cookieKey
+            'COOKIE_ENCRYPTION_KEY' => $cookieKey,
         ];
         if ($io->isInteractive()) {
             $appName = $io->ask('App name (\'app_name\' by default):', 'app_name');
@@ -330,7 +329,7 @@ class Installer
      * @param array $variables Variables in .env file to update
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
-     * @throws Exception
+     * @throws \Exception
      */
     public static function createDevEnvFile($variables, $io)
     {
@@ -346,7 +345,7 @@ class Installer
         $io->write("Created `config/.env.dev`");
 
         $variables += [
-            'header' => '# Environment variables for development environment'
+            'header' => '# Environment variables for development environment',
         ];
         static::modifyEnvFile($newFile, $variables, $io);
     }
@@ -357,7 +356,7 @@ class Installer
      * @param array $variables Variables in .env file to update
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @return void
-     * @throws Exception
+     * @throws \Exception
      */
     public static function createProductionEnvFile($variables, $io)
     {
@@ -374,7 +373,7 @@ class Installer
 
         $variables += [
             'header' => '# Environment variables for production environment',
-            'DEBUG' => 'FALSE'
+            'DEBUG' => 'FALSE',
         ];
         static::modifyEnvFile($newFile, $variables, $io);
     }
@@ -385,7 +384,7 @@ class Installer
      * @param \Composer\IO\IOInterface $io IO interface to write to console.
      * @param string $filename Filename to copy to .env
      * @return void
-     * @throws Exception
+     * @throws \Exception
      */
     public static function setCurrentEnv($io, $filename)
     {
@@ -474,7 +473,7 @@ class Installer
      *
      * @param string $dir Path to a directory under root
      * @return string
-     * @throws Exception
+     * @throws \Exception
      */
     public static function getRootDir($dir)
     {
@@ -492,9 +491,9 @@ class Installer
     /**
      * Runs all methods that copy files from /vendor to /webroot
      *
-     * @param PackageEvent|Event $event Composer event object
+     * @param \Composer\Installer\PackageEvent|\Composer\Script\Event $event Composer event object
      * @return void
-     * @throws Exception
+     * @throws \Exception
      */
     public static function copyVendorFiles($event)
     {

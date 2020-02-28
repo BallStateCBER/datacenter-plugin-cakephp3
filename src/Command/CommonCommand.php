@@ -1,18 +1,19 @@
 <?php
+declare(strict_types=1);
+
 namespace DataCenter\Command;
 
 use Cake\Console\Arguments;
 use Cake\Console\Command;
 use Cake\Console\ConsoleIo;
 use Cake\I18n\Time;
-use Cake\Shell\Helper\ProgressHelper;
 use Exception;
 
 /**
  * Class CommonCommand
  * @package DataCenter\Command
- * @property ProgressHelper $progress
- * @property ConsoleIo $io
+ * @property \Cake\Shell\Helper\ProgressHelper $progress
+ * @property \Cake\Console\ConsoleIo $io
  */
 class CommonCommand extends Command
 {
@@ -22,8 +23,8 @@ class CommonCommand extends Command
     /**
      * Sets class properties
      *
-     * @param Arguments $args Arguments
-     * @param ConsoleIo $io Console IO object
+     * @param \Cake\Console\Arguments $args Arguments
+     * @param \Cake\Console\ConsoleIo $io Console IO object
      * @return void
      */
     public function execute(Arguments $args, ConsoleIo $io)
@@ -40,7 +41,7 @@ class CommonCommand extends Command
      */
     protected function makeProgressBar($total)
     {
-        /** @var ProgressHelper $progress */
+        /** @var \Cake\Shell\Helper\ProgressHelper $progress */
         $this->progress = $this->io->helper('Progress');
         $this->progress->init([
             'total' => $total,
@@ -53,7 +54,7 @@ class CommonCommand extends Command
      * Takes a string of IDs and returns an array
      *
      * @param string $string String of IDs and ID ranges (e.g. 1,2,3,5-7)
-     * @throws Exception
+     * @throws \Exception
      * @return int[]
      */
     protected function parseMultipleIdString($string)
@@ -74,7 +75,7 @@ class CommonCommand extends Command
 
             // Range of IDs
             if ($dashCount == 1) {
-                list($rangeStart, $rangeEnd) = explode('-', $range);
+                [$rangeStart, $rangeEnd] = explode('-', $range);
                 foreach ([$rangeStart, $rangeEnd] as $id) {
                     if (!is_numeric($id)) {
                         throw new Exception('Invalid ID: ' . $id);

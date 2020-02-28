@@ -1,4 +1,6 @@
 <?php
+declare(strict_types=1);
+
 namespace DataCenter\Controller\Component;
 
 use Cake\Controller\Component;
@@ -93,7 +95,7 @@ class FlashComponent extends Component
         if ($authError) {
             $storedMessages[] = [
                 'message' => $authError['message'],
-                'class' => 'error'
+                'class' => 'error',
             ];
             $this->getController()->request->getSession()->delete('Message.auth');
         }
@@ -101,7 +103,7 @@ class FlashComponent extends Component
         if ($other_messages) {
             $storedMessages[] = [
                 'message' => $other_messages['message'],
-                'class' => 'notification'
+                'class' => 'notification',
             ];
             $this->getController()->request->getSession()->delete('Message.flash');
         }
@@ -110,7 +112,7 @@ class FlashComponent extends Component
                 if ($message['class'] == 'dump') {
                     $message = [
                         'message' => '<pre>' . print_r($message['message'], true) . '</pre>',
-                        'class' => 'notification'
+                        'class' => 'notification',
                     ];
                 }
             }

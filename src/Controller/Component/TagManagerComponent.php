@@ -1,14 +1,14 @@
 <?php
+declare(strict_types=1);
+
 namespace DataCenter\Controller\Component;
 
 use Cake\Controller\Component;
-use Cake\Controller\Controller;
 use Cake\Datasource\ConnectionManager;
 use Cake\ORM\TableRegistry;
 
 class TagManagerComponent extends Component
 {
-
     /**
      * Returns an array of tags, each with values for name, id, and occurrences
      *
@@ -83,7 +83,7 @@ class TagManagerComponent extends Component
     /**
      * Prepares the tag editor
      *
-     * @param Controller $controller CakePHP controller
+     * @param \Cake\Controller\Controller $controller CakePHP controller
      * @return void
      */
     public function prepareEditor($controller)
@@ -101,9 +101,9 @@ class TagManagerComponent extends Component
             if ($controller->request->getData('Tags')) {
                 foreach ($controller->request->getData('Tags') as $tag) {
                     $Tag->id = is_array($tag) ? $tag['id'] : $tag;
-                    $listed = isset($tag['listed']) ? $tag['listed'] : $Tag->field('listed');
+                    $listed = $tag['listed'] ?? $Tag->field('listed');
                     if (! $listed) {
-                        $unlistedTags[$Tag->id] = isset($tag['name']) ? $tag['name'] : $Tag->field('name');
+                        $unlistedTags[$Tag->id] = $tag['name'] ?? $Tag->field('name');
                     }
                 }
             }
