@@ -6,9 +6,6 @@ var phpcs = require('gulp-phpcs');
 var phpunit = require('gulp-phpunit');
 var stylish = require('jshint-stylish');
 
-gulp.task('default', ['js_lint', 'php_cs']);
-
-
 
 /**************
  *    PHP     *
