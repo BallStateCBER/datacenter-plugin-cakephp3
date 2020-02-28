@@ -41,7 +41,6 @@ class CommonCommand extends Command
      */
     protected function makeProgressBar($total)
     {
-        /** @var \Cake\Shell\Helper\ProgressHelper $progress */
         $this->progress = $this->io->helper('Progress');
         $this->progress->init([
             'total' => $total,
