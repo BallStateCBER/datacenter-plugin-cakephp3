@@ -447,7 +447,7 @@ class Installer
 
         // Note any missing variables
         $splodeyPath = explode('/', $file);
-        $filename = $filename = array_pop($splodeyPath);
+        $filename = array_pop($splodeyPath);
         if ($options) {
             $skippedVariables = array_keys($options);
             $msg = 'No ' . implode(', ', $skippedVariables) . ' placeholder to replace in ' . $filename;
