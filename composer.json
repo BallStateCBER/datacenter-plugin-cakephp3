@@ -3,7 +3,7 @@
     "description": "Ball State CBER DataCenter plugin for CakePHP 3",
     "type": "cakephp-plugin",
     "require": {
-        "php": ">=7.1",
+        "php": ">=7.2",
         "cakephp/cakephp": "^3.5",
         "twbs/bootstrap": "~3.0",
         "cakephp/cakephp-codesniffer": "*",
