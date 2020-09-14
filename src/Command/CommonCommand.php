@@ -11,6 +11,7 @@ use Exception;
 
 /**
  * Class CommonCommand
+ *
  * @package DataCenter\Command
  * @property \Cake\Shell\Helper\ProgressHelper $progress
  * @property \Cake\Console\ConsoleIo $io
