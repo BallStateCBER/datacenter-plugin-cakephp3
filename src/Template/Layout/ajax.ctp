@@ -22,7 +22,7 @@
 <?php if (! empty($flashMessages)): ?>
     <?php foreach ($flashMessages as $msg): ?>
         <?php $this->append('buffered'); ?>
-            flashMessage.insert(<?= json_encode($message) ?>, <?= json_encode($msg['class']) ?>);
+            flashMessage.insert(<?= json_encode($msg['message']) ?>, <?= json_encode($msg['class']) ?>);
         <?php $this->end(); ?>
     <?php endforeach; ?>
 <?php endif; ?>
