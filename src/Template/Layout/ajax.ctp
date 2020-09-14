@@ -15,7 +15,6 @@
 <?php if ($googleAnalyticsId && !$debug): ?>
     <?php $this->append('buffered'); ?>
         gtag('config', '<?= $googleAnalyticsId ?>', <?= json_encode($gaConfig) ?>);
-        gtag('event', 'page_view');
     <?php $this->end(); ?>
 <?php endif; ?>
 
