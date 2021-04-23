@@ -4,9 +4,7 @@
         ['Projects and<br />Publications', 'https://projects.cberdata.org'],
         ['Economic<br />Indicators', 'https://indicators.cberdata.org'],
         ['Weekly<br />Commentary', 'https://commentaries.cberdata.org'],
-        ['County<br />Profiles', 'https://profiles.cberdata.org'],
         ['Community<br />Asset Inventory', 'https://cair.cberdata.org'],
-        ['Brownfield Grant<br />Writers\' Toolbox', 'https://brownfield.cberdata.org'],
         ['Manufacturing<br />Scorecard', 'https://mfgscorecard.cberdata.org/']
     ];
     $this_subsite_url = Configure::read('data_center_subsite_url');
