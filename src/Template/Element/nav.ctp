@@ -1,11 +1,11 @@
 <?php
     use Cake\Core\Configure;
     $tabs = [
-        ['Projects and<br />Publications', 'https://projects.cberdata.org'],
-        ['Economic<br />Indicators', 'https://indicators.cberdata.org'],
-        ['Weekly<br />Commentary', 'https://commentaries.cberdata.org'],
-        ['Community<br />Asset Inventory', 'https://cair.cberdata.org'],
-        ['Manufacturing<br />Scorecard', 'https://mfgscorecard.cberdata.org/']
+        ['Projects and Publications', 'https://projects.cberdata.org'],
+        ['Economic Indicators', 'https://indicators.cberdata.org'],
+        ['Weekly Commentary', 'https://commentaries.cberdata.org'],
+        ['Community Asset Inventory', 'https://cair.cberdata.org'],
+        ['Manufacturing Scorecard', 'https://mfgscorecard.cberdata.org/']
     ];
     $this_subsite_url = Configure::read('data_center_subsite_url');
 ?>
